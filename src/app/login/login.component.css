@@ -1,0 +1,46 @@
+.login
+{
+    position: absolute;
+    left: 200px;
+    top: 30px;
+    border-radius: 15px;
+    height: 600px;
+    width: 1000px;
+    background-color: #c19c82;
+}
+.vertical
+{
+    float: left;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius:15px ;
+    height: 600px;
+    width: 450px;
+}
+
+.login2
+{
+    height: 600px;
+    width: 300px;
+}
+
+.logo
+{
+    position: absolute;
+    left: 620px;
+    height: 200px;
+    width: 200px;
+}
+
+.formulario
+{
+    position: absolute;
+    left: 500px;
+    top: 220px;
+    height: 300px;
+    width: 450px;
+}
+
+.selector
+{
+    background-image: url('/src/assets/img/wallpaperinit.jpg');
+}
