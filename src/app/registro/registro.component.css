@@ -1,5 +1,5 @@
 .register{
-    background: -webkit-linear-gradient(left, #a47351, #483224);    
+    background: -webkit-linear-gradient(left, #c19c82, #553c2a );    
     margin-top: 3%;
     padding: 3%;
 }
@@ -46,6 +46,7 @@
     margin-top: -9%;
 }
 .register .register-form{
+
     padding: 10%;
     margin-top: 10%;
 }
@@ -61,14 +62,7 @@
     width: 50%;
     cursor: pointer;
 }
-.register .nav-tabs{
-    margin-top: 3%;
-    border: none;
-    background: #0062cc;
-    border-radius: 1.5rem;
-    width: 28%;
-    float: right;
-}
+
 .register .nav-tabs .nav-link{
     padding: 2%;
     height: 34px;
@@ -77,16 +71,8 @@
     border-top-right-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
 }
-.register .nav-tabs .nav-link:hover{
-    border: none;
-}
-.register .nav-tabs .nav-link.active{
-    width: 100px;
-    color: #0062cc;
-    border: 2px solid #0062cc;
-    border-top-left-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem;
-}
+
+
 .register-heading{
     text-align: center;
     margin-top: 8%;
@@ -107,4 +93,9 @@
     background-color:whitesmoke;
     height: 749px;
     width: 1519px;
+}
+
+.form-group
+{
+    margin-top: 7%;
 }
