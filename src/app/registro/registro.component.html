@@ -24,6 +24,7 @@
                   <input
                     type="text"
                     class="form-control"
+                    [(ngModel)] = "nombre"
                     placeholder="Nombre *"
                     value=""
                   />
@@ -32,6 +33,7 @@
                   <input
                     type="text"
                     class="form-control"
+                    [(ngModel)] = "apellido"
                     placeholder="Apellidos *"
                     value=""
                   />
@@ -40,6 +42,7 @@
                   <input
                     type="email"
                     class="form-control"
+                    [(ngModel)] = "email"
                     placeholder="Email *"
                     value=""
                   />
@@ -50,6 +53,7 @@
                   <input
                     type="password"
                     class="form-control"
+                    [(ngModel)] = "contrasena"
                     placeholder="Contraseña *"
                     value=""
                   />
@@ -58,6 +62,7 @@
                   <input
                     type="password"
                     class="form-control"
+                    [(ngModel)] = "contrasena2"
                     placeholder="Confirmar Contraseña *"
                     value=""
                   />
@@ -69,6 +74,7 @@
                     maxlength="10"
                     name="txtEmpPhone"
                     class="form-control"
+                    [(ngModel)] = "celular"
                     placeholder="Celular *"
                     value=""
                   />
@@ -138,25 +144,7 @@
                     value=""
                   />
                 </div>
-                <div class="form-group">
-                  <select class="form-control">
-                    <option class="hidden" selected disabled>
-                      Please select your Sequrity Question
-                    </option>
-                    <option>What is your Birthdate?</option>
-                    <option>What is Your old Phone Number</option>
-                    <option>What is your Pet Name?</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="`Answer *"
-                    value=""
-                  />
-                </div>
-                <input type="submit" class="btnRegister" value="Register" />
+                <input type="submit" class="btnRegister" (click) = "registrarse()" value="Register" />
               </div>
             </div>
           </div>
