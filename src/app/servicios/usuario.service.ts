@@ -25,4 +25,24 @@ export class UsuarioService {
     }
     return false;
   }
+
+  registrar(email: string, contrasena: string, contrasena2: string, nombre: string, apellido: string, celular: number) : boolean
+  {
+    for(let usu of this.usuarios)
+    {
+      if((usu.email ===  email))
+      {
+          alert("El usuario ya existe")
+          return false;
+      }
+    }
+      if(contrasena !== contrasena2)
+      {
+        alert("Las contraseñas no coninciden")
+        return false;
+      }
+    return true;
+  }
 }
+
+  

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../servicios/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -12,17 +14,20 @@ export class RegistroComponent implements OnInit {
   public email = "";
   public contrasena = "";
   public contrasena2 = "";
-  public celular=0;
+  public celular= 0;
 
-  constructor() { }
+  constructor(private usuarioservice:UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  registrarse(): void
+  public registrarse(): void
   {
-    alert(this.nombre + " " + this.apellido + " " + this.celular + 
-    " " + this.contrasena  + " " + this.contrasena2  + " " + this.email  + " " + this.celular)
+    if(this.usuarioservice.registrar(this.email, this.contrasena, this.contrasena2, this.nombre, this.apellido, this.celular))
+    {
+      alert("Registrado con exito")
+    }
+    
   }
 
 }
