@@ -1,5 +1,6 @@
 ul {
-  margin-left: 470px;
+ position: relative;
+ left: 30%;
 }
 
 
@@ -35,5 +36,6 @@ li:hover {
 }
 
 #historial {
-  margin-left: 200px;
+  position:relative;
+ left: 55%
 }
