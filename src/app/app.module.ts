@@ -8,6 +8,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { NavebarComponent } from './navebar/navebar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TiendaComponent } from './tienda/tienda.component';
+import { AppRoutingModule } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TiendaComponent } from './tienda/tienda.component';
     TiendaComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
