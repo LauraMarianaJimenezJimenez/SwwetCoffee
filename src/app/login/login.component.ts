@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{ProductoService} from "src/app/servicios/producto.service";
 import { UsuarioService } from '../servicios/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   public check : boolean = false;
   public algo ="";
 
-  constructor(private usuarioservice:UsuarioService){ }
+  constructor(private usuarioservice:UsuarioService, private router: Router){ }
 
   ngOnInit(): void {
     
@@ -23,7 +24,21 @@ export class LoginComponent implements OnInit {
 
   public inciarSesion():void
   {
-    alert(this.email)
+    alert(this.check)
+    if(this.usuarioservice.buscarUsuario(this.email, this.contrasena))
+    {
+      if(this.check)
+      {
+        //this.router.navigateByUrl('/admin')
+      }        
+      else
+      {
+        this.router.navigateByUrl('/inicio');
+      } 
+    }
+    else{
+      alert("Usuario no encontrado")
+    }
   }
 
 }
