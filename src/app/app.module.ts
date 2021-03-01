@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NavebarComponent } from './navebar/navebar.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NavebarComponent } from './navebar/navebar.component';
     LoginComponent,
     RegistroComponent,
     CarouselComponent,
-    NavebarComponent
+    NavebarComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule
