@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
   public inciarSesion():void
   {
-    alert(this.check)
     if(this.usuarioservice.buscarUsuario(this.email, this.contrasena))
     {
       if(this.check)
