@@ -1,4 +1,5 @@
-class Reporte
+import { Venta } from 'src/app/Modelos/venta.model';
+export class Reporte
 {
     constructor
     (

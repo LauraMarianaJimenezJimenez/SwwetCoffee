@@ -1,4 +1,6 @@
-class Venta{
+import { Producto } from 'src/app/Modelos/producto.model';
+
+export class Venta{
     
     public valor: number;
     constructor

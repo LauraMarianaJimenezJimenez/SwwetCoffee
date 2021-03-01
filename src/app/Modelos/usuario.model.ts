@@ -1,4 +1,6 @@
-class Usuario
+import { Venta } from 'src/app/Modelos/venta.model'; 
+
+export class Usuario
 {
     constructor
     (

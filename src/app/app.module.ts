@@ -9,6 +9,7 @@ import { NavebarComponent } from './navebar/navebar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TiendaComponent } from './tienda/tienda.component';
 import { AppRoutingModule } from './app.routes';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app.routes';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

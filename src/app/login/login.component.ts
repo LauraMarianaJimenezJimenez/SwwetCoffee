@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{ProductoService} from "src/app/servicios/producto.service";
+import { UsuarioService } from '../servicios/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,21 @@ import{ProductoService} from "src/app/servicios/producto.service";
 })
 export class LoginComponent implements OnInit {
 
-  productos = [{}];
-  constructor(private ProductoService:ProductoService){ }
+  public email = "";
+  public contrasena = "";
+  public check : boolean = false;
+  public algo ="";
+
+  constructor(private usuarioservice:UsuarioService){ }
 
   ngOnInit(): void {
-    this.productos = this.ProductoService.getProductos();
+    
+
+  }
+
+  public inciarSesion():void
+  {
+    alert(this.email)
   }
 
 }

@@ -1,5 +1,5 @@
 enum Categoria { Bebidas, Pasteleria, Grano};
-class Producto
+export class Producto 
 {
     constructor
     (
@@ -15,3 +15,4 @@ class Producto
 
     }
 }
+
