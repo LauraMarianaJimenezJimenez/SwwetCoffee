@@ -1,0 +1,17 @@
+class Usuario
+{
+    constructor
+    (
+        public nombre: string,
+        public apellido: string,
+        public contrasena: string,
+        public email: string,
+        public celular: number,
+        public compras: Venta[],
+        public admin: boolean
+
+    )
+    {
+
+    }
+}
