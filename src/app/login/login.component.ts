@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{ProductoService} from "src/app/servicios/producto.service";
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  productos = [{}];
+  constructor(private ProductoService:ProductoService){ }
 
   ngOnInit(): void {
-    document.body.className= "selector";
+    this.productos = this.ProductoService.getProductos();
   }
 
 }

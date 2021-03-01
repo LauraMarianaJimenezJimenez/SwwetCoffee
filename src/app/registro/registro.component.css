@@ -93,3 +93,18 @@
     margin-bottom: -15%;
     color: #495057;
 }
+
+.backgro
+{
+    filter: blur(6px);
+    height: 695px;
+    width: 1536px;
+}
+
+.algo
+{   margin-top: -50px;
+    padding-top: 50px;
+    background-color:whitesmoke;
+    height: 749px;
+    width: 1519px;
+}

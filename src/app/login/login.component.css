@@ -1,5 +1,6 @@
 .login
 {
+    z-index: 900;
     position: absolute;
     left: 200px;
     top: 30px;
@@ -40,7 +41,10 @@
     width: 450px;
 }
 
-.selector
+.backgro
 {
-    background-image: url('/src/assets/img/wallpaperinit.jpg');
+    position: absolute;
+    filter: blur(6px);
+    height: 695px;
+    width: 1536px;
 }
