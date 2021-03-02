@@ -3,6 +3,18 @@ body{
   background:#eee;
 }
 
+.hola
+{
+  position: relative;
+  right: 28%;
+}
+.catalog
+{
+  margin-top: 5%;
+  position: relative;
+  left: 40%;
+}
+
 .product-content {
   border: 2px solid #dfe5e9;
   margin-bottom: 20px;
@@ -290,6 +302,11 @@ body{
   font-size: 13px;
   font-weight: 700;
   text-align: center
+}
+
+img{
+  height: 238px;
+  width: 100%;
 }
 
 .product-deatil .message-text {
