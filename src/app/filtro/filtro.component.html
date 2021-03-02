@@ -1,14 +1,11 @@
-<div class="Filtro">
-    <div class="col1" > 
-      <button class="btnFiltros">Todos</button>
+<div class = "containerFilter">
+    <div class = "container">
+        <h2><b>Filtrar</b></h2>
+        <ul><li class="displayInline"><a id="todos" (click) ="mostrarProductos(-1)" ><b>Todos</b></a></li>
+            <li class="displayInline"><a id="bebidas" (click) ="mostrarProductos(0)"><b>Bebidas</b></a></li>    
+            <li class="displayInline"><a id="Pasteleria" (click) ="mostrarProductos(1)"><b>Pasteleria</b></a></li>    
+            <li class="displayInline"><a id="regalos" (click) ="mostrarProductos(2)"><b>Grano</b></a></li> 
+        </ul>
     </div>
-    <div class="col1" > 
-      <button class="btnFiltros">Bebidas</button>
-    </div>
-    <div class="col1" > 
-      <button class="btnFiltros">Pasteleria</button>
-    </div>
-    <div class="col1" > 
-      <button class="btnFiltros">Grano</button>
-    </div>
-  </div>
+</div>
+

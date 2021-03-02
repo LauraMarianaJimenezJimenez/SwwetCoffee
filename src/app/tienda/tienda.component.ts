@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../servicios/producto.service';
 import { Producto, Categoria } from '../Modelos/producto.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-tienda',
@@ -21,4 +22,22 @@ export class TiendaComponent implements OnInit {
     }
   }
 
+  public filtrarProductos(categoria: number)
+  {
+    var productosFiltrados: Producto[] = [];
+    if(categoria === -1)
+    {
+      this.productos = this.productoService.getProductos();
+    }
+    else 
+    for(let pro in this.productoService.getProductos())
+    {
+      for(let cat in Object.keys(Categoria))
+      {
+        alert(cat)
+      }
+      
+    }
+    
+  }
 }

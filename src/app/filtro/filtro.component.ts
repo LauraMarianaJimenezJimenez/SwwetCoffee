@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TiendaComponent } from '../tienda/tienda.component';
 
 @Component({
   selector: 'app-filtro',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tienda: TiendaComponent) { }
 
   ngOnInit(): void {
+  }
+
+  mostrarProductos(categoria: number)
+  {
+    this.tienda.filtrarProductos(categoria);
   }
 
 }
