@@ -10,6 +10,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TiendaComponent } from './tienda/tienda.component';
 import { AppRoutingModule } from './app.routes';
 import { FormsModule } from '@angular/forms';
+import { FiltroComponent } from './filtro/filtro.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     CarouselComponent,
     NavebarComponent,
     InicioComponent,
-    TiendaComponent
+    TiendaComponent,
+    FiltroComponent
   ],
   imports: [
     BrowserModule,

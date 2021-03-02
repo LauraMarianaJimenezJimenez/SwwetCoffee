@@ -1,0 +1,24 @@
+.filtro
+{
+  position: absolute;
+}
+
+.filtro:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.filtro2
+{
+  position: absolute;
+  right: 500px;
+}
+
+.col1
+{
+  text-align: justify;
+  float: left;
+  width: 25%;
+  padding: 45px;
+}   

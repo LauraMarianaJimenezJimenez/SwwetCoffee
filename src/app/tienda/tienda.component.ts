@@ -9,12 +9,16 @@ import { Producto, Categoria } from '../Modelos/producto.model';
 })
 export class TiendaComponent implements OnInit {
   public productos:Producto[] = []
+  public numbers : number []  = [];
 
   constructor(private productoService:ProductoService) { }
 
   ngOnInit(): void {
     this.productos = this.productoService.getProductos()
-
+    for(var i = 1; i <= 20; i++)
+    {
+      this.numbers.push(i);
+    }
   }
 
 }

@@ -1,71 +1,32 @@
-<app-navebar></app-navebar>
-<div class ="catalog">
-   <span class="hola">
-     Bienvenidos a productos
-   </span>
- <div class="container">
-    <div
-      class="col-xs-12 col-md-6 bootstrap snippets bootdeys"
-      *ngFor="let pro of productos"
-    >
-      <!-- product -->
-      <div class="product-content product-wrap clearfix">
-        <div class="row">
-          <div class="col-md-5 col-sm-12 col-xs-12">
-            <div class="product-image">
-              <img
-                src="{{ pro.imagen }}"
-                alt="194x228"
-                class="img-responsive"
-              />
-              <span class="tag2 hot"> NEW </span>
-            </div>
-          </div>
-          <div class="col-md-7 col-sm-12 col-xs-12">
-            <div class="product-deatil">
-              <h5 class="name">
-                <a> {{pro.nombre}}<span>{{pro.categoria}}</span> </a>
-              </h5>
-              <p class="price-container">
-                <span>${{pro.precio}}</span>
-              </p>
-              <span class="tag1"></span>
-            </div>
-            <div class="description">
-              <p>{{pro.descripcion}}</p>
-            </div>
-            <div class="product-info smart-form">
-              <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a href="javascript:void(0);" class="btn btn-success"
-                    >Añadir al carro</a
-                  >
+<app-navebar></app-navebar> 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+       <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let prod of productos">
+            <div class="wp-block product">
+                <figure>
+                  <img alt="194x228" src="{{prod.imagen}}" class="img-responsive img-center">
+                </figure>                    
+                
+                <h2 class="product-title"><a href="">{{prod.nombre}}</a></h2>
+                <p>
+                {{prod.descripcion}}
+                </p>
+                <div class="wp-block-footer">
+                  <b>
+                    <span class="price pull-left">${{prod.precio}}</span></b>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelect" >
+                      <option value={{num}} *ngFor = 'let num of numbers'>{{num}}</option>
+                    </select>
+                    <a href="#" class="btn btn-sm btn-info btn-icon btn-cart pull-right">
+                        <i class="fa fa-cart-plus"></i>
+                        <span>Añadir al carrito</span>
+                    </a>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <div class="rating">
-                    <label for="stars-rating-5"
-                      ><i class="fa fa-star"></i
-                    ></label>
-                    <label for="stars-rating-4"
-                      ><i class="fa fa-star"></i
-                    ></label>
-                    <label for="stars-rating-3"
-                      ><i class="fa fa-star text-primary"></i
-                    ></label>
-                    <label for="stars-rating-2"
-                      ><i class="fa fa-star text-primary"></i
-                    ></label>
-                    <label for="stars-rating-1"
-                      ><i class="fa fa-star text-primary"></i
-                    ></label>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- end product -->
-    </div>
-  </div>
+	</div>
+</div>   
+<div class="comprar">
+  <button id="btnComprar"><img id = "imgCarrito" src="http://www.clker.com/cliparts/U/D/n/G/6/h/white-shopping-cart-md.png" alt=""></button>
 </div>
