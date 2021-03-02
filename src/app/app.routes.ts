@@ -9,6 +9,7 @@ import { TiendaComponent } from "./tienda/tienda.component";
 
 const routes = [
     {path: '', component: LoginComponent},
+    {path: 'login', component: LoginComponent},
     {path:'registrarse',component: RegistroComponent},
     {path:'inicio',component: InicioComponent},
     {path:'tienda', component: TiendaComponent}

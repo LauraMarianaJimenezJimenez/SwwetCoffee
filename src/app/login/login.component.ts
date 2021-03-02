@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{ProductoService} from "src/app/servicios/producto.service";
 import { UsuarioService } from '../servicios/usuario.service';
 import { Router } from '@angular/router';
+import { Usuario } from '../Modelos/usuario.model';
 
 @Component({
   selector: 'app-login',

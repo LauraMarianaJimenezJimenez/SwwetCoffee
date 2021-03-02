@@ -1,8 +1,16 @@
 ul {
  position: relative;
- left: 27%;
+ left: 38%;
 }
 
+#logout
+{
+  float: right;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 
 .navbar-brand {
   display: block;
@@ -37,5 +45,5 @@ li:hover {
 
 #historial {
   position:relative;
- left: 55%
+ left: 50%
 }

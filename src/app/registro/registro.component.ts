@@ -26,6 +26,7 @@ export class RegistroComponent implements OnInit {
     if(this.usuarioservice.registrar(this.email, this.contrasena, this.contrasena2, this.nombre, this.apellido, this.celular))
     {
       alert("Registrado con exito")
+      this.router.navigateByUrl('/inicio');
     }
     
   }

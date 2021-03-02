@@ -62,6 +62,11 @@ export class UsuarioService {
         return false;
       }
     }
+    var usuarioNuevo : Usuario = new Usuario(nombre,apellido,contrasena,email,celular,[],false);
+    this.usuarios.push(usuarioNuevo);
+    this.usuarioActivo = usuarioNuevo;
+    console.log(this.usuarios);
+
     return true;
   }
 }
