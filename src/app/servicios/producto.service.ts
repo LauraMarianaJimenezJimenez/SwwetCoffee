@@ -33,7 +33,14 @@ export class ProductoService {
     'Café puro y concentrado',
     Categoria.BEBIDAS
   );
-  public productos: Producto[] = [this.p1, this.p2, this.p3, this.p4];
+  public p5: Producto = new Producto(
+    'Rollo de Cannella',
+    2000,
+    'https://www.midiariodecocina.com/wp-content/uploads/2015/08/Rollos-de-canela01.jpg',
+    'Rico pastel hecho de canela en forma de espiral',
+    Categoria.PASTELERIA
+  );
+  public productos: Producto[] = [this.p1, this.p2, this.p3, this.p4,this.p5];
   constructor() {}
 
   public getProductos() {

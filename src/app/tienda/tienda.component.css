@@ -116,7 +116,7 @@ img:hover
 {
   position: fixed; 
   bottom: 23px;  
-  left: 1250px;
+  right: 50px;
  }
 
  #btnComprar
