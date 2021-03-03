@@ -104,4 +104,16 @@ export class ProductoService {
   public getProductos() {
     return this.productos;
   }
+
+  public buscarProducto(nombre:string) : Producto
+  {
+    for(let pro of this.productos)
+    {
+      if(nombre === pro.nombre)
+      {
+        return pro;
+      }
+    }
+    return this.productos[0];
+  }
 }

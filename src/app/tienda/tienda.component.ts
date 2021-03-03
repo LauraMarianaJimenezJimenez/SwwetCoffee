@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../servicios/producto.service';
 import { Producto, Categoria } from '../Modelos/producto.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Venta } from '../Modelos/venta.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-tienda',
@@ -10,7 +12,11 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class TiendaComponent implements OnInit {
   public productos: Producto[] = [];
+  public venta: Venta =  new Venta("",0,[]);
   public numbers: number[] = [];
+
+  //Inflate
+  public numero:number = 0
 
   constructor(private productoService: ProductoService) {}
 
@@ -42,5 +48,10 @@ export class TiendaComponent implements OnInit {
       }
       this.productos = productosFiltrados;
     }
+  }
+
+  public agregarProducto(nombre:string, cantidad:number)
+  {
+    
   }
 }

@@ -10,17 +10,22 @@
                   <img alt="194x228" src="{{prod.imagen}}" class="img-responsive img-center">
                 </figure>                    
                 
-                <h2 class="product-title"><a href="">{{prod.nombre}}</a></h2>
+                <h2 class="product-title"><ins><a>{{prod.nombre}}</a></ins></h2>
                 <p>
                 {{prod.descripcion}}
                 </p>
                 <div class="wp-block-footer">
                   <b>
                     <span class="price pull-left">${{prod.precio}}</span></b>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelect" >
-                      <option value={{num}} *ngFor = 'let num of numbers'>{{num}}</option>
+                    <select name="select" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelect">
+                      <option value="0">1</option>
+                      <option value="1">2</option>
+                      <option value="2">3</option>
+                      <option value="3">4</option>
+                      <option value="4">5</option>
+                    <!--   <option value={{num}} *ngFor = 'let num of numbers' [ngValue]="num">{{num}}</option> -->
                     </select>
-                    <a href="#" class="btn btn-sm btn-info btn-icon btn-cart pull-right">
+                    <a class="btn btn-sm btn-info btn-icon btn-cart pull-right" (click) = "agregarProducto(prod.nombre,1)">
                         <i class="fa fa-cart-plus"></i>
                         <span>Añadir al carrito</span>
                     </a>

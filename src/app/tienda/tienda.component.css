@@ -50,6 +50,7 @@ h2 {
 
 .wp-block.product p {
   color: #616161;
+  height: 50px;
 }
 
 .wp-block.product .wp-block-footer {
