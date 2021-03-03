@@ -40,7 +40,33 @@ export class ProductoService {
     'Rico pastel hecho de canela en forma de espiral',
     Categoria.PASTELERIA
   );
-  public productos: Producto[] = [this.p1, this.p2, this.p3, this.p4,this.p5];
+
+  public p6: Producto = new Producto(
+    'Galletas de Avena',
+    1800,
+    'https://t2.rg.ltmcdn.com/es/images/3/0/3/galletas_de_avena_faciles_y_rapidas_67303_600_square.jpg',
+    'Galleta elaborado en base a la harina de trigo mezclada con el cereal de avena',
+    Categoria.PASTELERIA
+  );
+
+  public p7: Producto = new Producto(
+    'Croissant de Mantequilla',
+    2500,
+    'https://okdiario.com/img/2019/01/30/croissant-de-mantequilla.jpg',
+    'Croissant salado hecho con masa de hojaldre y margarina',
+    Categoria.PASTELERIA
+  );
+
+  public p8: Producto = new Producto(
+    'Almojabana',
+    1000,
+    'https://www.sweetysalado.com/wp-content/uploads/2015/01/DSC_0068N.jpg',
+    'Panecillo dulce típico de Latino America',
+    Categoria.PASTELERIA
+  );
+
+  
+  public productos: Producto[] = [this.p1, this.p2, this.p3, this.p4,this.p5, this.p6, this.p7, this.p8];
   constructor() {}
 
   public getProductos() {
