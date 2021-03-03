@@ -65,8 +65,40 @@ export class ProductoService {
     Categoria.PASTELERIA
   );
 
+  public p9: Producto = new Producto(
+    'Coffee Scrub 250g',
+    12700,
+    'https://sc02.alicdn.com/kf/HTB13fYRX5jrK1RjSsplq6xHmVXaS/201628904/HTB13fYRX5jrK1RjSsplq6xHmVXaS.jpg_.webp',
+    'Sabor pleno y regusto intenso, con matices caramelizados, gran cuerpo y cremosidad.',
+    Categoria.GRANO
+  );
+
+  public p10: Producto = new Producto(
+    'Agora Café 200g',
+    18000,
+    'https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202008/17/00120602000034____6__600x600.jpg',
+    'Etiquetas privadas, exfoliante, tratamiento anticelulítico, café Arábica, exfoliante.',
+    Categoria.GRANO
+  );
   
-  public productos: Producto[] = [this.p1, this.p2, this.p3, this.p4,this.p5, this.p6, this.p7, this.p8];
+  public p11: Producto = new Producto(
+    'Café Flores 100g',
+    15000,
+    'https://sc04.alicdn.com/kf/Ub566bc983a4d433da61e4dc596c50b8ek.jpg',
+    'Granos nacionales de café Premium. Grano rojo.',
+    Categoria.GRANO
+  );
+
+  public p12: Producto = new Producto(
+    'Café Flores 30g',
+    8000,
+    'https://www.chedraui.com.mx/medias/7506161215893-00-CH1200Wx1200H?context=bWFzdGVyfHJvb3R8MTA3ODQ5fGltYWdlL2pwZWd8aGZhL2gxOC8xMDU3MTc5NTIzNDg0Ni5qcGd8Nzc5ODZmMGNkOGQ2N2FjNDE5ZTQ3YTYyYjc5NjdhYjJlODcxYThiYjllZmQ5NzY1M2I5YTM1M2NmYWVmZmY2YQ',
+    'Granos de café Sirianni cubiertos de cocolate, combinación extraordinaria',
+    Categoria.GRANO
+  );
+
+
+  public productos: Producto[] = [this.p7, this.p12, this.p1, this.p8,this.p3, this.p5, this.p9, this.p4, this.p11, this.p2, this.p6, this.p10];
   constructor() {}
 
   public getProductos() {
