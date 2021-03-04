@@ -5,6 +5,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Venta } from '../Modelos/venta.model';
 import { NgForm } from '@angular/forms';
 import { VentaService } from '../servicios/venta.service';
+import { Router } from '@angular/router';
+import { Usuario } from '../Modelos/usuario.model';
 
 @Component({
   selector: 'app-tienda',
@@ -13,14 +15,12 @@ import { VentaService } from '../servicios/venta.service';
 })
 export class TiendaComponent implements OnInit {
   public productos: Producto[] = [];
-  public venta: Venta =  new Venta("",0,[]);
+  public venta: Venta =  {} as Venta
   public productosAgregados :{producto: Producto, cantidad: number}[] = []
   public numbers: number[] = [];
 
-  //Inflate
-  public numero:number = 0
 
-  constructor(private productoService: ProductoService, private ventaService: VentaService) {}
+  constructor(private productoService: ProductoService, private ventaService: VentaService, private router:Router) {}
 
   ngOnInit(): void {
     this.productos = this.productoService.getProductos();
@@ -70,7 +70,6 @@ export class TiendaComponent implements OnInit {
       this.productosAgregados.push(algo);
       
     }
-    console.log(this.productosAgregados)
     alert("Producto añadido al carrito");
   
   }
@@ -78,6 +77,16 @@ export class TiendaComponent implements OnInit {
   public realizarCompra()
   {
     var fecha:string = this.ventaService.obtenerFechaHoy();
-    /* this.venta = new Venta() */
+    var id:number = 0;
+    var ventas:Venta[] = this.ventaService.ventas;
+    if(ventas.length!==0)
+    {
+       var ultima:Venta = ventas[ventas.length-1];
+      id =  ultima.id
+      id = id + 1
+    }
+    this.venta = new Venta(fecha,id,this.productosAgregados,{} as Usuario);
+    this.ventaService.agregarVenta(this.venta);
+    this.router.navigateByUrl('/resumen-compra');
   }
 }

@@ -1,0 +1,29 @@
+<app-navebar></app-navebar>
+<h2 class="container"><b>Resumen de compra</b></h2>
+<div class= "tabla">
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio Unitario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pro of productos">
+        <td>{{pro.producto.nombre}}</td>
+        <td>{{pro.cantidad}}</td>
+        <td>{{pro.producto.precio}}</td>
+      </tr>
+      <tr class="total">
+        <td><b>Total</b></td>
+        <td>-</td>
+        <td>{{precioTotal}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex flex-row-reverse bd-highlight">
+    <button class="btn btn-primary" (click) = "confirmarCompra()">Comprar</button>
+  </div>

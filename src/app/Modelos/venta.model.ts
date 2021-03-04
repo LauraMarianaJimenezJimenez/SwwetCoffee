@@ -1,4 +1,5 @@
 import { Producto } from 'src/app/Modelos/producto.model';
+import { Usuario } from './usuario.model';
 
 export class Venta{
     
@@ -9,6 +10,7 @@ export class Venta{
         public fecha: string,
         public id: number,
         public productos: {producto: Producto, cantidad: number}[],
+        public usuario: Usuario
 
     )
     {

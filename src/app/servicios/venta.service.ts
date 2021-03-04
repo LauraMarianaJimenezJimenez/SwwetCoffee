@@ -7,11 +7,12 @@ import { Venta } from 'src/app/Modelos/venta.model';
 export class VentaService {
 
   public ventas: Venta[] = []
+  public ventaProceso: Venta = {} as Venta
   constructor() { }
 
   public agregarVenta(ventaNueva : Venta)
   {
-    this.ventas.push(ventaNueva);
+    this.ventaProceso = ventaNueva;
   }
 
   public obtenerFechaHoy(): string

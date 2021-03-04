@@ -11,6 +11,7 @@ import { TiendaComponent } from './tienda/tienda.component';
 import { AppRoutingModule } from './app.routes';
 import { FormsModule } from '@angular/forms';
 import { FiltroComponent } from './filtro/filtro.component';
+import { ResumenComponent } from './resumen/resumen.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FiltroComponent } from './filtro/filtro.component';
     NavebarComponent,
     InicioComponent,
     TiendaComponent,
-    FiltroComponent
+    FiltroComponent,
+    ResumenComponent
   ],
   imports: [
     BrowserModule,

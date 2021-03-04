@@ -9,7 +9,7 @@ export class UsuarioService {
     'Chucho',
     'Perez',
     '12345',
-    'raulperez@gmail.com',
+    'chuchoperez@gmail.com',
     300,
     [],
     false
@@ -25,7 +25,7 @@ export class UsuarioService {
   );
   public usuarios: Usuario[] = [this.usuario1, this.admin];
 
-  public usuarioActivo: Usuario = this.admin;
+  public usuarioActivo: Usuario = {} as Usuario
   constructor() {}
 
   buscarUsuario(email: string, contrasena: string): boolean {
