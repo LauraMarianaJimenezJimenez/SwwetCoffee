@@ -1,0 +1,59 @@
+<app-navebar></app-navebar>
+<h2 class="container"><b>Historial de compra {{usuarioActivo.nombre}}</b></h2>
+<div class="tabla">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">ID</th>
+        <th scope="col">Valor total</th>
+        <th scope="col">Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compra of usuarioActivo.compras">
+        <td>{{compra.fecha}}</td>
+        <td>{{compra.id}}</td>
+        <td>{{compra.calcularValorTotal()}}</td>
+        <td><button class="btn btn-primary" (click)= "verDetalle(compra)">Ver Detalle</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="tablaDetail" *ngIf="detalle">
+  <table class="table">
+    <tr>
+      <th>Fecha: </th>
+      <td>{{compraDetalle.fecha}}</td>
+    </tr>
+    <tr>
+      <th>ID: </th>
+      <td>{{compraDetalle.id}}</td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Valor Unitario</th>
+        <th scope="col">Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pro of compraDetalle.productos">
+        <td>{{pro.producto.nombre}}</td>
+        <td>{{pro.cantidad}}</td>
+        <td>{{pro.producto.precio}}</td>
+        <td>{{pro.producto.precio * pro.cantidad}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <button class="btn btn-primary" (click) = "salirDetalle()">Volver</button>
+  </div>
+
+</div>
+

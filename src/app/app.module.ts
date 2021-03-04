@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app.routes';
 import { FormsModule } from '@angular/forms';
 import { FiltroComponent } from './filtro/filtro.component';
 import { ResumenComponent } from './resumen/resumen.component';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ResumenComponent } from './resumen/resumen.component';
     InicioComponent,
     TiendaComponent,
     FiltroComponent,
-    ResumenComponent
+    ResumenComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
