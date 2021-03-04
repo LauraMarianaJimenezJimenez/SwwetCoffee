@@ -1,20 +1,19 @@
-.container
-{
-    margin-top: 70px;
-    text-align: center;
-    color: #946447;
+.container {
+  margin-top: 70px;
+  text-align: center;
+  color: #946447;
 }
 
-.thead-dark
-{
-    color: whitesmoke;
-    background-color:  #946447;
-    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 0.5px 0.5px #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000;
+.thead-dark {
+  color: whitesmoke;
+  background-color: #946447;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+    0.5px 0.5px #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px 0.5px 0 #000;
 }
 
-.tabla
-{
-    padding: 50px;
+.tabla {
+  padding: 50px;
 }
 /* 
 th{
@@ -23,36 +22,33 @@ th{
 
 } */
 
-.tablaDetail
-{
-    left: 21%;
-    width: 800px;
-    top: 40%;
-    background-color: #EAEDED;
-    position: fixed;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    z-index: 900;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5); 
+.tablaDetail {
+  top: 40%;
+  left: 40%;
+  margin-top: -100px;
+  margin-left: -250px; 
+  width: 800px;
+  background-color: #eaeded;
+  position: fixed;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 900;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-table
-{
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);    
+#ventas {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.total
-{
-    border-top: solid;
+.total {
+  border-top: solid;
 }
-.btn
-{
-    background: #553c2a;
-    border: #553c2a;
+.btn {
+  background: #553c2a;
+  border: #553c2a;
 }
 
-th
-{
-    width: 25%;
+th {
+  width: 25%;
 }
