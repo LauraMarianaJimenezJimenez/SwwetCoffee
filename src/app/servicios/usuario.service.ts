@@ -18,7 +18,7 @@ export class UsuarioService {
     'Maria',
     'Martinez',
     'Admin',
-    'mariamartinez@gmail.com',
+    'admin@gmail.com',
     301,
     [],
     true
@@ -28,14 +28,9 @@ export class UsuarioService {
   public usuarioActivo: Usuario = {} as Usuario
   constructor() {}
 
-  buscarUsuario(email: string, contrasena: string): boolean {
-    for (let usu of this.usuarios) {
-      if (usu.email === email && usu.contrasena === contrasena) {
-        this.usuarioActivo = usu;
-        return true;
-      }
-    }
-    return false;
+  buscarUsuario(email: string, contrasena: string) {
+    var usu =  this.usuarios.find(e=> e.email=== email && e.contrasena === contrasena)
+    return usu;
   }
 
   registrar(

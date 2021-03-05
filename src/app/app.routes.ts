@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { AdminComponent } from "./admin/admin.component";
 import { CarouselComponent } from "./carousel/carousel.component";
 import { HistorialComponent } from "./historial/historial.component";
 import { InicioComponent } from "./inicio/inicio.component";
@@ -16,7 +17,8 @@ const routes = [
     {path:'inicio',component: InicioComponent},
     {path:'tienda', component: TiendaComponent},
     {path: 'resumen-compra', component: ResumenComponent},
-    {path : 'historial', component: HistorialComponent}
+    {path : 'historial', component: HistorialComponent},
+    {path : 'admin', component: AdminComponent}
 ];
 @NgModule({
     imports:

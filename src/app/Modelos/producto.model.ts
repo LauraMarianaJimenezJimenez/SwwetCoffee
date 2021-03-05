@@ -10,6 +10,7 @@ export class Producto {
     public precio: number,
     public imagen: string,
     public descripcion: string,
-    public categoria: Categoria
+    public categoria: Categoria,
+    public editar: boolean
   ) {}
 }

@@ -1,0 +1,140 @@
+                    
+.wp-block {
+    margin: 0 0 15px 0;
+    padding:15px;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
+    position: relative;
+    cursor: default;
+    border-radius: 2px;
+  }
+  
+  .wp-block.product {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #e0eded;
+  }
+  
+  .wp-block:before, .wp-block:after {
+    display: table;
+    content: "";
+  }
+  
+  .wp-block.product figure {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0eded;
+  }
+  
+  .img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .wp-block.product .product-title {
+    margin: 10px 0 0 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+  
+  h2 {
+    font-size: 25px;
+  }
+  
+  .wp-block.product .product-title a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .wp-block.product p {
+    color: #616161;
+    height: 50px;
+  }
+  
+  .wp-block.product .wp-block-footer {
+    border-top: 1px solid #e0eded;
+    padding-top: 15px;
+    padding-bottom:25px;
+  }
+  
+  .wp-block.product .price {
+    padding: 4px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .btn-base {
+    color: #fff !important;
+    background-color: #3498db;
+    border: 1px solid;
+    border-color: #258cd1;
+  }
+
+  #eliminar
+  {
+    margin-right: 5px;
+    color: #fff !important;
+    background-color: #db3434;
+    border: 1px solid;
+    border-color: #d12525;
+    text-shadow: 1px 1px 0 #d52323;
+  }
+  
+  .btn-icon {
+    position: relative;
+  }
+  
+  .btn-icon.btn-sm span, .btn-icon.btn-sm input {
+    padding-left: 35px;
+  }
+  
+  
+  .btn-info {
+      background-color: #39b3d7;
+      border-color: #348fd2;
+      text-shadow: 1px 1px 0 #238ed5;
+  }     
+  
+  img
+  {
+    width: 250px;
+    height: 250px;
+  }
+  
+  img:hover
+  {
+    transform: scale(1.1);
+  }
+  
+  #inlineFormCustomSelect
+  {
+    margin-left: 40px;
+  }
+  
+  .comprar
+  {
+    position: fixed; 
+    bottom: 23px;  
+    right: 50px;
+   }
+  
+   #btnComprar
+   {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    height: 56px;
+    width: 56px;
+    border: none;  
+    border-radius: 50%;
+    background: #946447;
+    margin: 5px;
+  }
+  
+  #imgCarrito
+  {
+    width: 30px;
+    height: 30px;
+  }
+  

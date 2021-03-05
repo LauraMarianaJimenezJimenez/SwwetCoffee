@@ -25,11 +25,12 @@ export class LoginComponent implements OnInit {
 
   public inciarSesion():void
   {
-    if(this.usuarioservice.buscarUsuario(this.email, this.contrasena))
+    let usuario = this.usuarioservice.buscarUsuario(this.email, this.contrasena);
+    if(usuario !== undefined)
     {
-      if(this.check)
+      if(this.check && usuario.admin)
       {
-        //this.router.navigateByUrl('/admin')
+        this.router.navigateByUrl('/admin')
       }        
       else
       {

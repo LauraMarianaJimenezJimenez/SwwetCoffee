@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { FiltroComponent } from './filtro/filtro.component';
 import { ResumenComponent } from './resumen/resumen.component';
 import { HistorialComponent } from './historial/historial.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HistorialComponent } from './historial/historial.component';
     TiendaComponent,
     FiltroComponent,
     ResumenComponent,
-    HistorialComponent
+    HistorialComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
