@@ -30,6 +30,10 @@ export class UsuarioService {
 
   buscarUsuario(email: string, contrasena: string) {
     var usu =  this.usuarios.find(e=> e.email=== email && e.contrasena === contrasena)
+    if(usu !== undefined)
+    {
+      this.usuarioActivo = usu as Usuario;
+    }
     return usu;
   }
 

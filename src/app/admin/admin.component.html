@@ -9,20 +9,26 @@
                 </figure>                    
                 <label for="urlImagen" *ngIf="prod.editar">Inserte URL de la Imagen</label> <br>
                 <input type="text" name="urlImagen" *ngIf="prod.editar" [(ngModel)]="prod.imagen">
-                <h2 class="product-title"><ins><a>{{prod.nombre}}</a></ins></h2>
-                <p>
+                <h2 class="product-title"*ngIf="!prod.editar"><ins><a>{{prod.nombre}}</a></ins></h2>
+                <input type="text" id ="nombre"name="nombre" *ngIf="prod.editar" [(ngModel)]="prod.nombre">
+                <p *ngIf="!prod.editar">
                 {{prod.descripcion}}
                 </p>
+                <textarea name="" id="" cols="30" rows="2" *ngIf="prod.editar" [(ngModel)]="prod.descripcion"></textarea>
                 <div class="wp-block-footer">
                   <b>
-                    <span class="price pull-left">${{prod.precio}}</span></b>
-                    <a class="btn btn-sm btn-info  pull-right" (click)= "editar(prod)">
+                    <span class="price pull-left" *ngIf="!prod.editar">${{prod.precio}}</span></b>  
+                    <input type="text" id="precio" *ngIf="prod.editar" [(ngModel)]="prod.precio"> 
+                    <a class="btn btn-sm btn-info  pull-right" *ngIf="!prod.editar" (click)= "prod.editar=true">
                         <span>Editar</span>
                     </a>
-                    <a class="btn btn-sm pull-right" id="eliminar">
+                    <a class="btn btn-sm pull-right" id="eliminar" *ngIf="!prod.editar" (click) = "eliminarProducto(prod)">
                         <span>Eliminar</span>
                     </a>
-                </div>
+                    <a class="btn btn-sm pull-right" id="aceptar" *ngIf="prod.editar" (click) = "actualizarProducto(prod)">
+                        <span>Aceptar</span>
+                    </a>
+                </div>  
             </div>
         </div>
 	</div>
@@ -30,5 +36,40 @@
 </div>   
 <div class="comprar">
     <button id="btnComprar"><img id = "imgCarrito" src="https://pics.freeicons.io/uploads/icons/png/13732025981547546480-512.png" alt=""></button>
-  <button id="btnComprar"><img id = "imgCarrito" src="http://cdn.onlinewebfonts.com/svg/img_27177.png" alt=""></button>
+  <button id="btnComprar"><img id = "imgCarrito" src="http://cdn.onlinewebfonts.com/svg/img_27177.png" alt="" (click) = "agregar = true"></button>
+  <button id="btnComprar"><img id = "imgCarrito" src="http://cdn.onlinewebfonts.com/svg/img_284036.png" alt="" routerLink="/login"></button>
 </div>
+
+<div class="agregar" *ngIf="agregar">
+    <h2 class = "tituloAgregar"><b>Agregar producto nuevo</b></h2>
+            <img class = "nuevaImagen"src="{{imagenNuevo}}" alt="">
+        <div class="form-group">
+          <label for="inputAddress">URL Imagen</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="https://flaticon.com/..." [(ngModel)] = "imagenNuevo">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Nombre</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Churro, Dona..."  [(ngModel)] = "nombreNuevo">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Descripción</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Ricos churros sabor a tamarindo..."  [(ngModel)] = "descripcionNuevo">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">Categoria</label>
+            <select id="inputState" class="form-control"  [(ngModel)] = "categoriaNuevo">
+                <option [ngValue]="0">Bebidas</option>
+              <option [ngValue]="1">Pastelería</option>
+              <option [ngValue]="2">Grano</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Precio</label>
+            <input type="text" class="form-control" id="inputZip" placeholder="2000, 3000..."  [(ngModel)] = "precioNuevo">
+          </div>
+        </div>
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <button class="btn btn-primary" id = "btnAceptarAgregar"(click) = "agregarProducto()">Agregar</button>
+          </div>
+  </div>

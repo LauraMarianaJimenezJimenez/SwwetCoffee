@@ -1,4 +1,8 @@
-                    
+  
+.filtro2
+{
+    margin-top: 20px;
+}
 .wp-block {
     margin: 0 0 15px 0;
     padding:15px;
@@ -82,6 +86,22 @@
     border-color: #d12525;
     text-shadow: 1px 1px 0 #d52323;
   }
+
+  #aceptar
+  {
+    margin-right: 5px;
+    color: #fff !important;
+    background-color: #358510;
+    border: 1px solid;
+    border-color: #358510;
+    text-shadow: 1px 1px 0 #358510;
+  }
+
+  #nombre
+  {
+      margin-top: 7px;
+      margin-bottom: 7px;
+  }
   
   .btn-icon {
     position: relative;
@@ -136,5 +156,36 @@
   {
     width: 30px;
     height: 30px;
+  }
+
+  .agregar {
+    top: 14%;
+    left: 40%;
+    margin-top: -100px;
+    margin-left: -250px; 
+    width: 800px;
+    background-color: #eaeded;
+    position: fixed;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 900;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .tituloAgregar{   
+      margin-bottom: 20px;
+    text-align: center;
+    color: #946447;
+  }
+
+  .nuevaImagen:hover
+  {
+    transform: scale(1);
+  }
+
+  #btnAceptarAgregar {
+    background: #553c2a;
+    border: #553c2a;
   }
   
