@@ -3,6 +3,7 @@ import{ProductoService} from "src/app/servicios/producto.service";
 import { UsuarioService } from '../servicios/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../Modelos/usuario.model';
+import { VentaService } from '../servicios/venta.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   public check : boolean = false;
   public algo ="";
 
-  constructor(private usuarioservice:UsuarioService, private router: Router){ }
+  constructor(private usuarioservice:UsuarioService, private router: Router, private ventaServicio: VentaService){ }
 
   ngOnInit(): void {
     
@@ -30,10 +31,12 @@ export class LoginComponent implements OnInit {
     {
       if(this.check && usuario.admin)
       {
+        localStorage.setItem('user',usuario.email);
         this.router.navigateByUrl('/admin')
       }        
       else
       {
+        localStorage.setItem('user',usuario.email);
         this.router.navigateByUrl('/inicio');
       } 
     }

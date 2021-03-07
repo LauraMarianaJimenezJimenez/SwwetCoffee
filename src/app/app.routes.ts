@@ -10,17 +10,18 @@ import { RegistroComponent } from "./registro/registro.component";
 import { ReporteComponent } from "./reporte/reporte.component";
 import { ResumenComponent } from "./resumen/resumen.component";
 import { TiendaComponent } from "./tienda/tienda.component";
+import { AuthGuardGuard } from "./auth-guard.guard";
 
 const routes = [
     {path: '', component: LoginComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'login',component: LoginComponent},
     {path:'registrarse',component: RegistroComponent},
-    {path:'inicio',component: InicioComponent},
-    {path:'tienda', component: TiendaComponent},
-    {path: 'resumen-compra', component: ResumenComponent},
-    {path : 'historial', component: HistorialComponent},
-    {path : 'admin', component: AdminComponent},
-    {path : 'admin/reporte', component: ReporteComponent}
+    {path:'inicio',  canActivate:[AuthGuardGuard],component: InicioComponent},
+    {path:'tienda',  canActivate:[AuthGuardGuard],component: TiendaComponent},
+    {path: 'resumen-compra',  canActivate:[AuthGuardGuard],component: ResumenComponent},
+    {path : 'historial',  canActivate:[AuthGuardGuard],component: HistorialComponent},
+    {path : 'admin', canActivate:[AuthGuardGuard], component: AdminComponent},
+    {path : 'admin/reporte',  canActivate:[AuthGuardGuard], component: ReporteComponent}
 ];
 @NgModule({
     imports:

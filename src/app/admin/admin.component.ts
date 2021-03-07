@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria, Producto } from '../Modelos/producto.model';
+import { Usuario } from '../Modelos/usuario.model';
 import { ProductoService } from '../servicios/producto.service';
+import { UsuarioService } from '../servicios/usuario.service';
 
 @Component({
   selector: 'app-admin',
@@ -19,10 +21,17 @@ export class AdminComponent implements OnInit {
   public precioNuevo :number = 0;
   public categoriaNuevo: Categoria = -1;
 
-  constructor(private productoServicio : ProductoService, private router: Router) { }
+  constructor(private productoServicio : ProductoService, private router: Router, private usuarioServicio : UsuarioService) { }
 
   ngOnInit(): void {
    this.productos= this.productoServicio.getProductos()
+  }
+
+  public logout()
+  {
+    this.usuarioServicio.usuarioActivo = {} as Usuario;
+    localStorage.setItem('user','');
+    this.router.navigateByUrl("/login")
   }
 
   public actualizarProducto(prod:Producto)

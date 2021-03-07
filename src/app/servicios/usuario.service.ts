@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from 'src/app/Modelos/usuario.model';
+import { VentaService } from './venta.service';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,7 @@ export class UsuarioService {
   constructor() {}
 
   buscarUsuario(email: string, contrasena: string) {
-    var usu =  this.usuarios.find(e=> e.email=== email && e.contrasena === contrasena)
+    var usu =  this.usuarios.find(e=> e.email.toLowerCase()=== email.toLowerCase() && e.contrasena === contrasena)
     if(usu !== undefined)
     {
       this.usuarioActivo = usu as Usuario;
@@ -53,7 +54,7 @@ export class UsuarioService {
       return false;
     } else {
       for (let usu of this.usuarios) {
-        if (usu.email === email) {
+        if (usu.email.toLowerCase() === email.toLowerCase()) {
           alert('El usuario ya existe');
           return false;
         }

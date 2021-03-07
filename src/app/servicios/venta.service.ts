@@ -25,9 +25,10 @@ export class VentaService {
    public ventas: Venta[] = [this.venta1, this.venta2]
    public ventaProceso: Venta = {} as Venta
 
-  constructor(private servicioProducto : ProductoService, private servicioUsuario : UsuarioService) { }
-  
+  constructor(private servicioProducto : ProductoService, private servicioUsuario : UsuarioService) {
+    servicioUsuario.usuario1.compras = [this.venta1,this.venta2];
 
+   }
   public agregarVenta(ventaNueva : Venta)
   {
     this.ventaProceso = ventaNueva;
