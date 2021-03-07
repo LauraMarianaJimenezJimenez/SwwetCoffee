@@ -14,6 +14,7 @@ import { FiltroComponent } from './filtro/filtro.component';
 import { ResumenComponent } from './resumen/resumen.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminComponent } from './admin/admin.component';
     FiltroComponent,
     ResumenComponent,
     HistorialComponent,
-    AdminComponent
+    AdminComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,

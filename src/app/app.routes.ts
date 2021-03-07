@@ -7,6 +7,7 @@ import { InicioComponent } from "./inicio/inicio.component";
 import{LoginComponent} from "./login/login.component"
 import { NavebarComponent } from "./navebar/navebar.component";
 import { RegistroComponent } from "./registro/registro.component";
+import { ReporteComponent } from "./reporte/reporte.component";
 import { ResumenComponent } from "./resumen/resumen.component";
 import { TiendaComponent } from "./tienda/tienda.component";
 
@@ -18,7 +19,8 @@ const routes = [
     {path:'tienda', component: TiendaComponent},
     {path: 'resumen-compra', component: ResumenComponent},
     {path : 'historial', component: HistorialComponent},
-    {path : 'admin', component: AdminComponent}
+    {path : 'admin', component: AdminComponent},
+    {path : 'admin/reporte', component: ReporteComponent}
 ];
 @NgModule({
     imports:

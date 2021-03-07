@@ -23,6 +23,8 @@ export class UsuarioService {
     [],
     true
   );
+
+
   public usuarios: Usuario[] = [this.usuario1, this.admin];
 
   public usuarioActivo: Usuario = {} as Usuario

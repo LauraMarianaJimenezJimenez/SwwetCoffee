@@ -1,0 +1,65 @@
+<h2 class="container"><b>Reporte de Ventas</b></h2>
+<div class="tabla">
+  <table class="table" id="ventas">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">ID</th>
+        <th scope="col">Valor total</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let venta of ventas">
+        <td>{{venta.fecha}}</td>
+        <td>{{venta.id}}</td>
+        <td>{{venta.valor}}</td>
+        <td>{{venta.usuario.nombre}}</td>
+        <td><button class="btn btn-primary" (click) = "verDetalle(venta)">Ver Detalle</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="tablaDetail" *ngIf="detalle">
+  <table class="table">
+    <tr>
+      <th>Fecha: </th>
+      <td>{{ventaDetalle.fecha}}</td>
+    </tr>
+    <tr>
+      <th>ID: </th>
+      <td>{{ventaDetalle.id}}</td>
+    </tr>
+    <tr>
+    <th>Usuario: </th>
+    <td>{{ventaDetalle.usuario.nombre}}</td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Valor Unitario</th>
+        <th scope="col">Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pro of ventaDetalle.productos">
+            <td>{{pro.producto.nombre}}</td>
+            <td>{{pro.cantidad}}</td>
+            <td>{{pro.producto.precio}}</td>
+            <td>{{pro.producto.precio * pro.cantidad}}</td>
+        </tr>
+    </tbody>
+  </table>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <button class="btn btn-primary" (click) = "salirDetalle()">Volver</button>
+  </div>
+
+</div>
+
+

@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Venta } from 'src/app/Modelos/venta.model';
+import { ProductoService } from './producto.service';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VentaService {
 
-  public ventas: Venta[] = []
-  public ventaProceso: Venta = {} as Venta
-  constructor() { }
+  public venta1: Venta = new Venta(
+    '06/03/2021',
+    0,
+    [{producto: this.servicioProducto.p2, cantidad: 1}, {producto: this.servicioProducto.p10, cantidad:2}],
+    this.servicioUsuario.usuario1
+   )
+   
+   public ventas: Venta[] = [this.venta1]
+   public ventaProceso: Venta = {} as Venta
+
+  constructor(private servicioProducto : ProductoService, private servicioUsuario : UsuarioService) { }
+  
 
   public agregarVenta(ventaNueva : Venta)
   {
