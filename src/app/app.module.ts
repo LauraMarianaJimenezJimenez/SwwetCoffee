@@ -16,6 +16,7 @@ import { HistorialComponent } from './historial/historial.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { FiltroReporteComponent } from './filtro-reporte/filtro-reporte.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FiltroReporteComponent } from './filtro-reporte/filtro-reporte.componen
     HistorialComponent,
     AdminComponent,
     ReporteComponent,
-    FiltroReporteComponent
+    FiltroReporteComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
