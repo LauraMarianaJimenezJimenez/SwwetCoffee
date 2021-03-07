@@ -1,4 +1,5 @@
 <h2 class="container"><b>Reporte de Ventas</b></h2>
+<app-filtro-reporte></app-filtro-reporte>
 <div class="tabla">
   <table class="table" id="ventas">
     <thead class="thead-dark">
@@ -17,6 +18,13 @@
         <td>{{venta.valor}}</td>
         <td>{{venta.usuario.nombre}}</td>
         <td><button class="btn btn-primary" (click) = "verDetalle(venta)">Ver Detalle</button></td>
+      </tr>
+      <tr class="total">
+        <td><b>Total</b></td>
+        <td>-</td>
+        <td>{{valorTotalVenta}}</td>
+        <td>-</td>
+        <td>-</td>
       </tr>
     </tbody>
   </table>

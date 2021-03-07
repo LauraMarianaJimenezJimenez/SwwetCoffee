@@ -15,6 +15,7 @@ import { ResumenComponent } from './resumen/resumen.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReporteComponent } from './reporte/reporte.component';
+import { FiltroReporteComponent } from './filtro-reporte/filtro-reporte.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReporteComponent } from './reporte/reporte.component';
     ResumenComponent,
     HistorialComponent,
     AdminComponent,
-    ReporteComponent
+    ReporteComponent,
+    FiltroReporteComponent
   ],
   imports: [
     BrowserModule,

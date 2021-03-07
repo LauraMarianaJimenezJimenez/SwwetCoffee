@@ -14,8 +14,15 @@ export class VentaService {
     [{producto: this.servicioProducto.p2, cantidad: 1}, {producto: this.servicioProducto.p10, cantidad:2}],
     this.servicioUsuario.usuario1
    )
+
+   public venta2: Venta = new Venta(
+    '06/12/2021',
+    3,
+    [{producto: this.servicioProducto.p4, cantidad: 3}, {producto: this.servicioProducto.p12, cantidad:2}, {producto: this.servicioProducto.p9, cantidad:1}],
+    this.servicioUsuario.usuario1
+   )
    
-   public ventas: Venta[] = [this.venta1]
+   public ventas: Venta[] = [this.venta1, this.venta2]
    public ventaProceso: Venta = {} as Venta
 
   constructor(private servicioProducto : ProductoService, private servicioUsuario : UsuarioService) { }
