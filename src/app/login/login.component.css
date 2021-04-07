@@ -4,9 +4,9 @@
     position: absolute;
     left: 200px;
     top: 30px;
-    border-radius: 15px;
     height: 600px;
     width: 1000px;
+    border-radius: 15px;
     background-color: #c19c82;
 }
 .vertical
@@ -43,10 +43,13 @@
 
 .backgro
 {
-    position: absolute;
+    position: relative;
     filter: blur(6px);
-    height: 695px;
-    width: 1536px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
 .btn
 {

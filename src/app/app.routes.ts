@@ -11,6 +11,7 @@ import { ReporteComponent } from "./reporte/reporte.component";
 import { ResumenComponent } from "./resumen/resumen.component";
 import { TiendaComponent } from "./tienda/tienda.component";
 import { AuthGuardGuard } from "./auth-guard.guard";
+import { AdminAuthGuardGuard } from "./admin-auth-guard.guard";
 
 const routes = [
     {path: '', component: LoginComponent},
@@ -20,8 +21,8 @@ const routes = [
     {path:'tienda',  canActivate:[AuthGuardGuard],component: TiendaComponent},
     {path: 'resumen-compra',  canActivate:[AuthGuardGuard],component: ResumenComponent},
     {path : 'historial',  canActivate:[AuthGuardGuard],component: HistorialComponent},
-    {path : 'admin', canActivate:[AuthGuardGuard], component: AdminComponent},
-    {path : 'admin/reporte',  canActivate:[AuthGuardGuard], component: ReporteComponent}
+    {path : 'admin', canActivate:[AdminAuthGuardGuard], component: AdminComponent},
+    {path : 'admin/reporte',  canActivate:[AdminAuthGuardGuard], component: ReporteComponent}
 ];
 @NgModule({
     imports:

@@ -30,6 +30,7 @@ export class AdminComponent implements OnInit {
   public logout()
   {
     this.usuarioServicio.usuarioActivo = {} as Usuario;
+    localStorage.setItem('admin','');
     localStorage.setItem('user','');
     this.router.navigateByUrl("/login")
   }
