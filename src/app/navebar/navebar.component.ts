@@ -19,6 +19,7 @@ export class NavebarComponent implements OnInit {
   {
     this.usuarioServicio.usuarioActivo = {} as Usuario;
     localStorage.setItem('user','');
+    localStorage.setItem('admin','');
     this.router.navigateByUrl("/login")
   }
 }
