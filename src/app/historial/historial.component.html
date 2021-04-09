@@ -14,7 +14,7 @@
       <tr *ngFor="let compra of usuarioActivo.compras">
         <td>{{compra.fecha}}</td>
         <td>{{compra.id}}</td>
-        <td>{{compra.calcularValorTotal()}}</td>
+        <td>{{compra.valor}}</td>
         <td><button class="btn btn-primary" (click)= "verDetalle(compra)">Ver Detalle</button></td>
       </tr>
     </tbody>
