@@ -188,4 +188,19 @@
     background: #553c2a;
     border: #553c2a;
   }
-  
+
+  #btnDesactivar
+  {
+    background-color: #358510;
+    margin-left: 5px;
+  }
+  #btnDesactivar span{
+    color: #ffff;
+    border-color: #fff;
+  }
+
+  #btnActivar
+  {
+    background-color: grey;
+    margin-left: 5px;
+  }

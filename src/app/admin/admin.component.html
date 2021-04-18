@@ -19,6 +19,12 @@
                   <b>
                     <span class="price pull-left" *ngIf="!prod.editar">${{prod.precio}}</span></b>  
                     <input type="text" id="precio" *ngIf="prod.editar" [(ngModel)]="prod.precio"> 
+                    <a class="btn btn-sm pull-right" id="btnDesactivar" *ngIf="prod.activo && !prod.editar" (click)= "cambiarEstadoProducto(prod)">
+                      <span>Desactivar</span>
+                  </a>
+                  <a class="btn btn-sm pull-right" id="btnActivar" *ngIf="!prod.activo && !prod.editar" (click)= "cambiarEstadoProducto(prod)">
+                    <span>Activar</span>
+                </a>
                     <a class="btn btn-sm btn-info  pull-right" *ngIf="!prod.editar" (click)= "prod.editar=true">
                         <span>Editar</span>
                     </a>

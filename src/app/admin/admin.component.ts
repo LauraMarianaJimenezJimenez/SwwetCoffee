@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria, Producto } from '../Modelos/producto.model';
 import { Usuario } from '../Modelos/usuario.model';
@@ -54,13 +54,26 @@ export class AdminComponent implements OnInit {
 
   public eliminarProducto(prod:Producto)
   {
-    var index:number = this.productos.indexOf(prod);
-    this.productos.splice(index,1)
-    this.productoServicio.eliminarProducto(prod).subscribe(
+    var eliminable:boolean
+    this.productoServicio.consultarItemsProducto(prod).subscribe(
       data=>{
-        console.log(data)
+        eliminable = data
+        if(eliminable)
+        {
+          this.productoServicio.eliminarProducto(prod).subscribe(
+            data=>{
+              console.log(data)
+            },
+            error=>console.log("error al eliminar")
+          )
+          var index:number = this.productos.indexOf(prod);
+          this.productos.splice(index,1)
+        }else
+        {
+          alert("No se puede eliminar el producto porque hay ventas asociadas, si desea puede desactivarlo")
+        }
       },
-      error=>console.log("error al eliminar")
+      error=>console.log("No se pudo consultar los items por producto")
     )
   }
 
@@ -84,4 +97,17 @@ export class AdminComponent implements OnInit {
     alert("Producto agregado exitosamente")
   }
 
+  public cambiarEstadoProducto(prod:Producto)
+  {
+    if(prod.activo)
+    {
+      prod.activo= false
+    }else
+    {
+      prod.activo = true
+    }
+    this.actualizarProducto(prod)
+  }
+
+  
 }

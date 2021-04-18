@@ -50,4 +50,10 @@ export class ProductoService {
     let url = "http://localhost:8080/productos/eliminar/" + producto.id
     return this.http.delete<any>(url);
   }
+
+  consultarItemsProducto(producto:Producto):Observable<any>
+  {
+    let url = "http://localhost:8080/items/getItemsProducto/"+producto.id
+    return this.http.get<any>(url);
+  }
 }
