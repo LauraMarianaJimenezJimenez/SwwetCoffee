@@ -24,8 +24,14 @@ export class AdminComponent implements OnInit {
   constructor(private productoServicio : ProductoService, private router: Router, private usuarioServicio : UsuarioService) { }
 
   ngOnInit(): void {
-   this.productos= this.productoServicio.getProductos()
-  }
+   this.productoServicio.consultarProductos().subscribe(
+     data=>{
+      this.productos = data;
+     },
+     error=>console.log("error recibido")
+    ) 
+   } 
+   
 
   public logout()
   {
@@ -37,15 +43,25 @@ export class AdminComponent implements OnInit {
 
   public actualizarProducto(prod:Producto)
   {
-    this.productoServicio.productos =this.productos;
     prod.editar = false;
+    this.productoServicio.actualizarProducto(prod).subscribe(
+      data=>{
+        console.log(data)
+      },
+      error=>console.log("No se pudo actualizar")
+    )
   }
 
   public eliminarProducto(prod:Producto)
   {
     var index:number = this.productos.indexOf(prod);
     this.productos.splice(index,1)
-    this.productoServicio.productos = this.productos;
+    this.productoServicio.eliminarProducto(prod).subscribe(
+      data=>{
+        console.log(data)
+      },
+      error=>console.log("error al eliminar")
+    )
   }
 
   public agregarProducto()
@@ -53,7 +69,12 @@ export class AdminComponent implements OnInit {
   
     var productoNuevo: Producto = new Producto(this.nombreNuevo,this.precioNuevo,this.imagenNuevo,this.descripcionNuevo,this.categoriaNuevo,false);
     this.productos.push(productoNuevo);
-    this.productoServicio.productos = this.productos;
+    this.productoServicio.agregarProducto(productoNuevo).subscribe(
+      data=>{
+        console.log(data)
+      },
+      error=>console.log("error al agregar producto")
+    )
     this.agregar = false;
     this.imagenNuevo = "";
     this.nombreNuevo = "";

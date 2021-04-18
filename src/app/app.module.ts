@@ -17,6 +17,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { FiltroReporteComponent } from './filtro-reporte/filtro-reporte.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

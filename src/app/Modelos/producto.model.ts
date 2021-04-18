@@ -5,6 +5,10 @@ export enum Categoria {
 }
 
 export class Producto {
+
+  public id:number = -1;
+  public activo:boolean = true;
+
   constructor(
     public nombre: string,
     public precio: number,
