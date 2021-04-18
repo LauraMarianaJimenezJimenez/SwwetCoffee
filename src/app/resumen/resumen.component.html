@@ -10,10 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pro of productos">
-        <td>{{pro.producto.nombre}}</td>
-        <td>{{pro.cantidad}}</td>
-        <td>{{pro.producto.precio}}</td>
+      <tr *ngFor="let item of items">
+        <td>{{item.producto.nombre}}</td>
+        <td>{{item.cantidad}}</td>
+        <td>{{item.precioVenta}}</td>
       </tr>
       <tr class="total">
         <td><b>Total</b></td>

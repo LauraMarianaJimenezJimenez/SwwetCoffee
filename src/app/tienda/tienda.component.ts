@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { VentaService } from '../servicios/venta.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../Modelos/usuario.model';
+import { Item } from '../Modelos/item.model';
 
 @Component({
   selector: 'app-tienda',
@@ -16,17 +17,12 @@ import { Usuario } from '../Modelos/usuario.model';
 export class TiendaComponent implements OnInit {
   public productos: Producto[] = [];
   public venta: Venta =  {} as Venta
-  public productosAgregados :{producto: Producto, cantidad: number}[] = []
-  public numbers: number[] = [];
-
+  public productosAgregados : Item[] = []
 
   constructor(private productoService: ProductoService, private ventaService: VentaService, private router:Router) {}
 
   ngOnInit(): void {
     this.productos = this.productoService.getProductos();
-    for (var i = 1; i <= 20; i++) {
-      this.numbers.push(i);
-    }
   }
 
   public filtrarProductos(categoria: number) {
@@ -52,12 +48,12 @@ export class TiendaComponent implements OnInit {
     }
   }
 
-  public agregarProducto(nombre:string, canti:number)
+  public agregarItem(prod:Producto, canti:number)
   {
     var nuevo:boolean = true; 
     for(let agre of this.productosAgregados)
     {
-      if(agre.producto.nombre === nombre)
+      if(agre.producto.id === prod.id)
       {
         agre.cantidad ++;
         nuevo = false;
@@ -65,9 +61,8 @@ export class TiendaComponent implements OnInit {
     }
     if(nuevo)
     {
-      var pro:Producto =  this.productoService.buscarProducto(nombre);
-      var algo:{producto: Producto, cantidad: number} = {producto:pro,cantidad:canti};
-      this.productosAgregados.push(algo);
+      var itemNuevo:Item = new Item(prod.precio,canti,this.venta,prod)
+      this.productosAgregados.push(itemNuevo);
       
     }
     alert("Producto añadido al carrito");
@@ -77,14 +72,7 @@ export class TiendaComponent implements OnInit {
   public realizarCompra()
   {
     var fecha:string = this.ventaService.obtenerFechaHoy();
-    var id:number = 0;
-    var ventas:Venta[] = this.ventaService.ventas;
-    if(ventas.length!==0)
-    {
-       var ultima:Venta = ventas[ventas.length-1];
-      id =  ultima.id
-      id = id + 1
-    }
+    var id:number = -1;
     this.venta = new Venta(fecha,id,this.productosAgregados,{} as Usuario);
     this.ventaService.agregarVenta(this.venta);
     this.router.navigateByUrl('/resumen-compra');

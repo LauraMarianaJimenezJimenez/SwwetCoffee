@@ -16,7 +16,7 @@
         <td>{{venta.fecha}}</td>
         <td>{{venta.id}}</td>
         <td>{{venta.valor}}</td>
-        <td>{{venta.usuario.nombre}}</td>
+        <td>{{venta.nombreUsuario}}</td>
         <td><button class="btn btn-primary" (click) = "verDetalle(venta)">Ver Detalle</button></td>
       </tr>
       <tr class="total">
@@ -42,7 +42,7 @@
     </tr>
     <tr>
     <th>Usuario: </th>
-    <td>{{ventaDetalle.usuario.nombre}}</td>
+    <td>{{ventaDetalle.nombreUsuario}}</td>
     </tr>
   </table>
 
@@ -56,11 +56,11 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pro of ventaDetalle.productos">
-            <td>{{pro.producto.nombre}}</td>
-            <td>{{pro.cantidad}}</td>
-            <td>{{pro.producto.precio}}</td>
-            <td>{{pro.producto.precio * pro.cantidad}}</td>
+        <tr *ngFor="let item of ventaDetalle.items">
+            <td>{{item.nombreProducto}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.precioVenta}}</td>
+            <td>{{item.precioVenta * item.cantidad}}</td>
         </tr>
     </tbody>
   </table>

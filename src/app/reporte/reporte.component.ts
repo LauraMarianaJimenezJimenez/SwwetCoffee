@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { VentaDTO } from '../DTOs/VentaDTO';
 import { Usuario } from '../Modelos/usuario.model';
 import { Venta } from '../Modelos/venta.model';
 import { VentaService } from '../servicios/venta.service';
@@ -13,8 +14,9 @@ import { VentaService } from '../servicios/venta.service';
 
 export class ReporteComponent implements OnInit {
 
-  public ventas: Venta[] = []
-  public ventaDetalle : Venta = {} as Venta;
+  public ventas: VentaDTO[] = []
+  public todasVentas:VentaDTO[] = []
+  public ventaDetalle : VentaDTO = {} as VentaDTO;
   public detalle: boolean = false;
   public valorTotalVenta = 0;
 
@@ -22,15 +24,28 @@ export class ReporteComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ventas = this.servicioVenta.ventas; 
-    this.calcularTotalVentas();
+    this.servicioVenta.consultarVentas().subscribe(
+      data=>{
+        this.ventas = data
+        this.todasVentas = data
+        this.calcularTotalVentas();
+      },
+      error=>console.log("error al consultar las ventas")
+    );
+    
   }
 
-  public verDetalle(ventaDetalle: Venta)
+  public verDetalle(ventaDetalle: VentaDTO)
   {
     if(!this.detalle)
     {
       this.ventaDetalle = ventaDetalle;
+      this.servicioVenta.consultarItemsVenta(ventaDetalle).subscribe(
+        data =>{
+          this.ventaDetalle.items = data;
+        },
+        error=>"No se pudo consultar los items de esta venta"
+      )
       this.detalle = true;
     }
       
@@ -41,7 +56,7 @@ export class ReporteComponent implements OnInit {
     if(this.detalle)
     {
       this.detalle = false;
-      this.ventaDetalle = {} as Venta;
+      this.ventaDetalle = {} as VentaDTO;
     }
   }
 
@@ -56,14 +71,14 @@ export class ReporteComponent implements OnInit {
 
   public filtrarVentas(mes:string)
   {
-    var ventasFiltradas: Venta[] = []
-    if(mes === '/0/')
+    var ventasFiltradas: VentaDTO[] = []
+    if(mes === '-0-')
     {
-      this.ventas = this.servicioVenta.ventas
+      this.ventas = this.todasVentas;
     }
     else
     {
-      for(let venta of this.servicioVenta.ventas)
+      for(let venta of this.todasVentas)
       {
         if(venta.fecha.includes(mes))
         {
@@ -71,9 +86,8 @@ export class ReporteComponent implements OnInit {
         }
       }
       this.ventas = ventasFiltradas;
-      this.calcularTotalVentas();
     }
-    
+    this.calcularTotalVentas();
   }
 
   

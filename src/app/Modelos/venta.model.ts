@@ -1,4 +1,4 @@
-import { Producto } from 'src/app/Modelos/producto.model';
+import { Item } from './item.model'
 import { Usuario } from './usuario.model';
 
 export class Venta{
@@ -9,7 +9,7 @@ export class Venta{
         
         public fecha: string,
         public id: number,
-        public productos: {producto: Producto, cantidad: number}[],
+        public items:Item[],
         public usuario: Usuario
 
     )
@@ -20,9 +20,9 @@ export class Venta{
     calcularValorTotal(): number
     {
         var valorTotal: number = 0;
-        for(let entry of this.productos)
+        for(let entry of this.items)
         {
-            valorTotal = valorTotal + (entry.cantidad * entry.producto.precio);
+            valorTotal = valorTotal + (entry.cantidad * entry.precioVenta);
         }
         return valorTotal;
     }
