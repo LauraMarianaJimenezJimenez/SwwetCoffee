@@ -26,6 +26,7 @@ export class AdminComponent implements OnInit {
   constructor(private productoServicio : ProductoService, private router: Router, private usuarioServicio : UsuarioService) { }
 
   ngOnInit(): void {
+    this.pagina=0;
    this.productoServicio.consultarProductos(this.pagina,this.sizePagina).subscribe(
      data=>{
       this.productos = data.content;
