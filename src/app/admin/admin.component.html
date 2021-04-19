@@ -1,5 +1,5 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class = "filtro2">
+<div class = "filtro2" infiniteScroll [infiniteScrollDistance]="2"  (scrolled) = "onScrollDown()">
 <div class="container bootstrap snippets bootdey">
     <div class="row">
        <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let prod of productos">

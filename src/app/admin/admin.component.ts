@@ -13,6 +13,8 @@ import { UsuarioService } from '../servicios/usuario.service';
 export class AdminComponent implements OnInit {
 
   public productos: Producto[] = [];
+  public sizePagina: number = 6;
+  public pagina:number = 0;
   //Producto nuevo
   public agregar = false;
   public imagenNuevo:string = ""
@@ -24,9 +26,10 @@ export class AdminComponent implements OnInit {
   constructor(private productoServicio : ProductoService, private router: Router, private usuarioServicio : UsuarioService) { }
 
   ngOnInit(): void {
-   this.productoServicio.consultarProductos().subscribe(
+   this.productoServicio.consultarProductos(this.pagina,this.sizePagina).subscribe(
      data=>{
-      this.productos = data;
+      this.productos = data.content;
+      this.pagina++;
      },
      error=>console.log("error recibido")
     ) 
@@ -109,5 +112,35 @@ export class AdminComponent implements OnInit {
     this.actualizarProducto(prod)
   }
 
-  
+  /* @HostListener("window:scroll", [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 ) {
+      var productosConcatenar : Producto[]
+      this.productoServicio.consultarProductos(this.pagina,this.sizePagina).subscribe(
+        data=>{
+         productosConcatenar = data.content;
+         console.log(productosConcatenar)
+         this.productos = this.productos.concat(productosConcatenar);
+         this.pagina++;
+        },
+        error=>console.log("error recibido")
+       ) 
+    }
+  } */
+
+  onScrollDown() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 ) {
+      var productosConcatenar : Producto[]
+      this.productoServicio.consultarProductos(this.pagina,this.sizePagina).subscribe(
+        data=>{
+         productosConcatenar = data.content;
+         console.log(productosConcatenar)
+         this.productos = this.productos.concat(productosConcatenar);
+         this.pagina++;
+        },
+        error=>console.log("error recibido")
+       ) 
+    }
+  }
+
 }

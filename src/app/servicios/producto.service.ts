@@ -27,9 +27,9 @@ export class ProductoService {
     return this.productos[0];
   }
 
-  consultarProductos():Observable<any>
+  consultarProductos(page:number,size:number):Observable<any>
   {
-    let url = "http://localhost:8080/productos/getProductos"
+    let url = "http://localhost:8080/productos/getProductos/"+page+"/"+size
     return this.http.get<any>(url);
   }
 
