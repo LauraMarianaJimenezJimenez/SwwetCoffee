@@ -85,10 +85,12 @@ export class AdminComponent implements OnInit {
   {
   
     var productoNuevo: Producto = new Producto(this.nombreNuevo,this.precioNuevo,this.imagenNuevo,this.descripcionNuevo,this.categoriaNuevo,false);
-    this.productos.push(productoNuevo);
+    /* this.productos.push(productoNuevo); */
     this.productoServicio.agregarProducto(productoNuevo).subscribe(
       data=>{
         console.log(data)
+        alert("Producto agregado exitosamente")
+        window.location.reload();
       },
       error=>console.log("error al agregar producto")
     )
@@ -98,7 +100,6 @@ export class AdminComponent implements OnInit {
     this.descripcionNuevo = "";
     this.precioNuevo = 0;
     this.categoriaNuevo = -1;
-    alert("Producto agregado exitosamente")
   }
 
   public cambiarEstadoProducto(prod:Producto)
@@ -113,35 +114,20 @@ export class AdminComponent implements OnInit {
     this.actualizarProducto(prod)
   }
 
-  /* @HostListener("window:scroll", [])
-  onScroll(): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 ) {
-      var productosConcatenar : Producto[]
-      this.productoServicio.consultarProductos(this.pagina,this.sizePagina).subscribe(
-        data=>{
-         productosConcatenar = data.content;
-         console.log(productosConcatenar)
-         this.productos = this.productos.concat(productosConcatenar);
-         this.pagina++;
-        },
-        error=>console.log("error recibido")
-       ) 
-    }
-  } */
-
   onScrollDown() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10 ) {
       var productosConcatenar : Producto[]
       this.productoServicio.consultarProductos(this.pagina,this.sizePagina).subscribe(
         data=>{
          productosConcatenar = data.content;
          console.log(productosConcatenar)
+         if(productosConcatenar.length !== 0 )
+         {
          this.productos = this.productos.concat(productosConcatenar);
          this.pagina++;
+         }
         },
         error=>console.log("error recibido")
        ) 
-    }
   }
 
 }
