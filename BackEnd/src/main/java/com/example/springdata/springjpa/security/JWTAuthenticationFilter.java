@@ -77,7 +77,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.setIssuedAt(new Date())
 				.setIssuer("miAplicacion")
 				.setSubject(((User)auth.getPrincipal()).getUsername())
-				.setExpiration(new Date(System.currentTimeMillis() + 600000))
+				.setExpiration(new Date(System.currentTimeMillis() + 86400000))
 				.signWith(SignatureAlgorithm.HS512, "12345")
 				.compact();
 

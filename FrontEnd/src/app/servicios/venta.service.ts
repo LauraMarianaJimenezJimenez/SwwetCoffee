@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Venta } from 'src/app/Modelos/venta.model';
 import { ProductoService } from './producto.service';
@@ -37,13 +37,27 @@ export class VentaService {
 
   consultarVentas():Observable<any>
   {
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
     let url = "http://localhost:8080/ventas/getVentas"
-    return this.http.get<any>(url);
+    return this.http.get<any>(url, options);
   }
 
   consultarItemsVenta(venta : VentaDTO):Observable<any>
   {
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
     let url = "http://localhost:8080/items/getItemsVenta/"+venta.id
-    return this.http.get<any>(url);
+    return this.http.get<any>(url,options);
   }
 }

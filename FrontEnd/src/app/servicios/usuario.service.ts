@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/Modelos/usuario.model';
 import { VentaService } from './venta.service';
 
@@ -29,15 +31,24 @@ export class UsuarioService {
   public usuarios: Usuario[] = [this.usuario1, this.admin];
 
   public usuarioActivo: Usuario = {} as Usuario
-  constructor() {}
+  constructor(private http:HttpClient) {}
 
-  buscarUsuario(email: string, contrasena: string) {
-    var usu =  this.usuarios.find(e=> e.email.toLowerCase()=== email.toLowerCase() && e.contrasena === contrasena)
-    if(usu !== undefined)
-    {
-      this.usuarioActivo = usu as Usuario;
+  buscarUsuario(email: string, token:string):Observable<any> {
+    const headerDict = {
+      'Authorization': token
     }
-    return usu;
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://localhost:8080/usuarios/getUsuario/" + email
+    return this.http.get<any>(url,options)
+  }
+
+  login(usuario:Usuario):Observable<any>
+  {
+    let url = "http://localhost:8080/login"
+    return this.http.post<any>(url,usuario,{observe: 'response'})
   }
 
   registrar(
