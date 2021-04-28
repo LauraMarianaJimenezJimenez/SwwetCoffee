@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.springdata.springjpa.model.Categoria;
 import com.example.springdata.springjpa.model.Item;
@@ -44,7 +45,7 @@ class LoadData {
 	ProductoRepository productoRepository;
 
 	@Bean
-	CommandLineRunner initDatabase() {
+	CommandLineRunner initDatabase(BCryptPasswordEncoder bCryptPasswordEncoder) {
 		return args -> {
 			System.out.println("Probando los repositorios Spring Data JPA");
 
@@ -178,7 +179,7 @@ class LoadData {
 			usuario.setAdmin(false);
 			usuario.setApellido("Perez");
 			usuario.setCelular(300);
-			usuario.setContrasena("12345");
+			usuario.setContrasena(bCryptPasswordEncoder.encode("12345"));
 			usuario.setEmail("chuchoperez@gmail.com");
 			usuario.setNombre("Chucho");
 			usuarioRepository.save(usuario);
@@ -187,7 +188,7 @@ class LoadData {
 			admin.setAdmin(true);
 			admin.setApellido("Martinez");
 			admin.setCelular(301);
-			admin.setContrasena("Admin");
+			admin.setContrasena(bCryptPasswordEncoder.encode("Admin"));
 			admin.setEmail("admin@gmail.com");
 			admin.setNombre("Maria");
 			usuarioRepository.save(admin);
