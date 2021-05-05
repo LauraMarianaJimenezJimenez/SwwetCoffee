@@ -22,18 +22,18 @@ public class Venta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long id;
+	private long id;
 	
 	@Temporal(TemporalType.DATE)
-	public Date fecha;
+	private Date fecha;
 	
-	public int valor;
+	private int valor;
 	
 	@ManyToOne
-	public Usuario usuario;
+	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "venta", fetch = FetchType.EAGER)
-	public List<Item> items;
+	private List<Item> items;
 
 
 

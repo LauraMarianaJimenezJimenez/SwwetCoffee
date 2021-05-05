@@ -6,7 +6,6 @@ public class UsuarioDTO {
 	public String apellido;
 	public String contrasena;
 	public long celular;
-	public boolean admin;
 	
 	public String getEmail() {
 		return email;
@@ -37,12 +36,6 @@ public class UsuarioDTO {
 	}
 	public void setCelular(long celular) {
 		this.celular = celular;
-	}
-	public boolean isAdmin() {
-		return admin;
-	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
 	}
 
 	

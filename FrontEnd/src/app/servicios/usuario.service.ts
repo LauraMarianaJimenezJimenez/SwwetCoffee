@@ -15,7 +15,6 @@ export class UsuarioService {
     'chuchoperez@gmail.com',
     300,
     [],
-    false
   );
   public admin: Usuario = new Usuario(
     'Maria',
@@ -24,7 +23,6 @@ export class UsuarioService {
     'admin@gmail.com',
     301,
     [],
-    true
   );
 
 
@@ -51,6 +49,18 @@ export class UsuarioService {
     return this.http.post<any>(url,usuario,{observe: 'response'})
   }
 
+  getRol(usuario:Usuario, token:string):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': token
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    let url = "http://localhost:8080/usuarios/getRol/" + usuario.email
+    return this.http.get<any>(url,options)
+  }
+
   registrar(
     email: string,
     contrasena: string,
@@ -75,7 +85,7 @@ export class UsuarioService {
         return false;
       }
     }
-    var usuarioNuevo : Usuario = new Usuario(nombre,apellido,contrasena,email,celular,[],false);
+    var usuarioNuevo : Usuario = new Usuario(nombre,apellido,contrasena,email,celular,[]);
     this.usuarios.push(usuarioNuevo);
     this.usuarioActivo = usuarioNuevo;
     localStorage.setItem('user',usuarioNuevo.email);

@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springdata.springjpa.model.Rol;
 import com.example.springdata.springjpa.model.Usuario;
 import com.example.springdata.springjpa.repository.UserRepositoryWithQuery;
 
@@ -33,6 +34,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario AddUser(Usuario newUsuario) {
 		return userRepository.save(newUsuario);
+	}
+
+	@Override
+	public Rol getRol(String email) {
+		return userRepository.findRolByUsuario(email);
 	}
 
 }

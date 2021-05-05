@@ -32,6 +32,13 @@ public class VentaController {
 	{
 		return transformarDTO(ventaService.getAllVentas());
 	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("getVentasMes/{mes}")
+	List<VentaDTO> getVentasByMes(@PathVariable int mes)
+	{
+		return transformarDTO(ventaService.getVentasByMes(mes));
+	}
 
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("getVentasUsuario/{email}")

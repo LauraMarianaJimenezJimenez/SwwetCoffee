@@ -2,6 +2,7 @@ package com.example.springdata.springjpa.service;
 
 import java.util.Optional;
 
+import com.example.springdata.springjpa.model.Rol;
 import com.example.springdata.springjpa.model.Usuario;
 
 public interface UsuarioService {
@@ -13,5 +14,7 @@ public interface UsuarioService {
 	void deleteAllUsers();
 
 	Usuario AddUser(Usuario newUsuario);
+
+	Rol getRol(String email);
 
 }

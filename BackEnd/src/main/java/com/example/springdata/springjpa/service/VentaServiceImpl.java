@@ -33,5 +33,10 @@ public class VentaServiceImpl implements VentaService{
 	public Venta AddVenta(Venta newVenta) {
 		return ventaRepository.save(newVenta);
 	}
+
+	@Override
+	public Iterable<Venta> getVentasByMes(int mes) {
+		return ventaRepository.findByMes(mes);
+	}
 		
 }

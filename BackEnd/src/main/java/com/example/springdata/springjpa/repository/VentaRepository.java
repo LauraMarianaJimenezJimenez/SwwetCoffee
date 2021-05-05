@@ -15,5 +15,8 @@ public interface VentaRepository extends JpaRepository<Venta, Long> {
 	@Query("SELECT v FROM Venta v WHERE v.usuario.email = :email")
 	Iterable<Venta> findByUsuario(String email);
 	
+	@Query("SELECT v FROM Venta v WHERE MONTH(v.fecha)  = :mes")
+	Iterable<Venta> findByMes(int mes);
+	
 
 }

@@ -1,9 +1,7 @@
 package com.example.springdata.springjpa.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springdata.springjpa.dtos.RolDTO;
 import com.example.springdata.springjpa.dtos.UsuarioDTO;
+import com.example.springdata.springjpa.model.Rol;
 import com.example.springdata.springjpa.model.Usuario;
 import com.example.springdata.springjpa.service.UsuarioService;
 
@@ -69,5 +69,13 @@ public class UsuarioController {
 		usuarioService.deleteAllUsers();
         return "Respuesta desde el metodo DELETE";
     }
+	
+	@GetMapping("getRol/{email}")
+	public RolDTO getRol(@PathVariable String email)
+	{
+		ModelMapper modelMapper = new ModelMapper();
+		RolDTO  rolDTO = modelMapper.map( usuarioService.getRol(email), RolDTO.class);
+		return rolDTO;
+	}
 	
 }

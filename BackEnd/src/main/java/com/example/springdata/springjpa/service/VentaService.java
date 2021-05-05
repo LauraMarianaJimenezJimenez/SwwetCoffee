@@ -12,5 +12,7 @@ public interface VentaService {
 	Iterable<Venta> getVentasByUsuario(String email);
 
 	Venta AddVenta(Venta newVenta);
+
+	Iterable<Venta> getVentasByMes(int mes);
 	
 }

@@ -3,6 +3,7 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 import { UsuarioService } from '../servicios/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../Modelos/usuario.model';
+import { RolDTO } from '../DTOs/RolDTO';
 import { VentaService } from '../servicios/venta.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   public contrasena = '';
   public check: boolean = false;
   public algo = '';
+  public rol:RolDTO = {} as RolDTO
 
   constructor(
     private usuarioservice: UsuarioService,
@@ -32,7 +34,6 @@ export class LoginComponent implements OnInit {
       this.email,
       -1,
       [],
-      false
     );
     this.usuarioservice.login(usuarioTemp).subscribe(
       (resp) => {
@@ -41,13 +42,18 @@ export class LoginComponent implements OnInit {
         this.usuarioservice.buscarUsuario(this.email,token).subscribe((data) => {
           var usuario: Usuario = data;
           if (usuario !== undefined) {
-            if (this.check && usuario.admin) {
-              localStorage.setItem('admin', token);
-              this.router.navigateByUrl('/admin');
-            } else {
-              this.router.navigateByUrl('/inicio');
-            }
-            this.usuarioservice.usuarioActivo = usuario
+            this.usuarioservice.getRol(usuario,token).subscribe(
+              data => {
+                this.rol = data
+                if (this.check && this.rol.nombre==="admin") {
+                  localStorage.setItem('admin', token);
+                  this.router.navigateByUrl('/admin');
+                } else {
+                  this.router.navigateByUrl('/inicio');
+                }
+                this.usuarioservice.usuarioActivo = usuario
+              }
+            )
           } else {
             alert('Usuario no encontrado');
           }
