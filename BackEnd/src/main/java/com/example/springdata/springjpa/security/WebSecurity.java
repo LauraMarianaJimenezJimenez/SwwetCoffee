@@ -42,7 +42,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 		.cors().and()
 		.headers().frameOptions().disable().and()
 		.csrf().disable()
-		.authorizeRequests().antMatchers("/h2/**", "/login").permitAll()
+		.authorizeRequests().antMatchers("/h2/**", "/login", "/usuarios/registrar").permitAll()
 		.anyRequest().authenticated().and()
 		.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 		.addFilter(new JWTAuthorizationFilter(authenticationManager()));

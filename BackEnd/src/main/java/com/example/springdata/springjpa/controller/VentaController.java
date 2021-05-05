@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,28 +26,33 @@ public class VentaController {
 	@Autowired
 	private VentaService ventaService;
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("getVentas")
 	List<VentaDTO> getVentas()
 	{
 		return transformarDTO(ventaService.getAllVentas());
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("getVentasUsuario/{email}")
 	List<VentaDTO> getVentasByUsuario(@PathVariable String email)
 	{
 		return transformarDTO(ventaService.getVentasByUsuario(email));
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PutMapping
 	public String put() {
 		return "Respuesta desde el metodo PUT";
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping
 	public Venta post(@RequestBody Venta newVenta) {
 		return ventaService.AddVenta(newVenta);
 	}
 
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping
 	public String delete() {
 		ventaService.deleteAllVentas();

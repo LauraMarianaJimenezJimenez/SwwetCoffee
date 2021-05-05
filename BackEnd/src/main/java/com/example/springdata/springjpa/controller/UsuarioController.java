@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("getUsuarios")
 	List<UsuarioDTO> getAllUsuarios()
 	{
@@ -41,6 +43,7 @@ public class UsuarioController {
 		return usersDTO;
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("getUsuario/{email}")
 	UsuarioDTO getUsuarioByEmail(@PathVariable String email)
 	{
@@ -49,16 +52,18 @@ public class UsuarioController {
 		return usuarioDTO;
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PutMapping
     public String put() {
         return "Respuesta desde el metodo PUT";
     }
 	
-	@PostMapping
+	@PostMapping("registrar")
     public Usuario post(@RequestBody Usuario newUsuario) {
         return usuarioService.AddUser(newUsuario);
     }
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping
     public String delete() {
 		usuarioService.deleteAllUsers();

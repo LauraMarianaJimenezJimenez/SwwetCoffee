@@ -21,10 +21,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.springdata.springjpa.model.Categoria;
 import com.example.springdata.springjpa.model.Item;
 import com.example.springdata.springjpa.model.Producto;
+import com.example.springdata.springjpa.model.Rol;
 import com.example.springdata.springjpa.model.Usuario;
 import com.example.springdata.springjpa.model.Venta;
 import com.example.springdata.springjpa.repository.ItemRepository;
 import com.example.springdata.springjpa.repository.ProductoRepository;
+import com.example.springdata.springjpa.repository.RolRepository;
 import com.example.springdata.springjpa.repository.UserRepositoryWithQuery;
 import com.example.springdata.springjpa.repository.VentaRepository;
 
@@ -43,6 +45,9 @@ class LoadData {
 
 	@Autowired
 	ProductoRepository productoRepository;
+	
+	@Autowired
+	RolRepository rolRepository;
 
 	@Bean
 	CommandLineRunner initDatabase(BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -174,9 +179,17 @@ class LoadData {
 			p12.setEditar(false);
 			p12.setActivo(true);
 			productoRepository.save(p12);
+			
+			Rol rolU = new Rol();
+			rolU.setNombre("user");
+			rolRepository.save(rolU);
+			
+			Rol rolA = new Rol();
+			rolA.setNombre("admin");
+			rolRepository.save(rolA);
 
 			Usuario usuario = new Usuario();
-			usuario.setAdmin(false);
+			usuario.setRol(rolU);
 			usuario.setApellido("Perez");
 			usuario.setCelular(300);
 			usuario.setContrasena(bCryptPasswordEncoder.encode("12345"));
@@ -185,7 +198,7 @@ class LoadData {
 			usuarioRepository.save(usuario);
 			
 			Usuario admin = new Usuario();
-			admin.setAdmin(true);
+			admin.setRol(rolA);
 			admin.setApellido("Martinez");
 			admin.setCelular(301);
 			admin.setContrasena(bCryptPasswordEncoder.encode("Admin"));

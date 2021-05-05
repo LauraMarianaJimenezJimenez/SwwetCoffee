@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("getProductos/{page}/{size}")
 	Page<ProductoDTO> getAllProductos(@PathVariable int page, @PathVariable int size)
 	{
 		return transformarDTO(productoService.getAllProdcuts(PageRequest.of(page, size)));
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("getProductosCategoria/{categoria}/{page}/{size}")
 	Page<ProductoDTO> getProductosByCategoria(@PathVariable String categoria, @PathVariable int page, @PathVariable int size)
 	{
 		return transformarDTO(productoService.getByCategoria(categoria, PageRequest.of(page, size)));
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@PutMapping("actualizar/{id}")
     public ProductoDTO actualizarProducto(@RequestBody Producto newProducto, @PathVariable Long id) {
 		ModelMapper modelMapper = new ModelMapper();
@@ -48,6 +52,7 @@ public class ProductoController {
 		return productoDTO;
     }
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping
     public ProductoDTO post(@RequestBody Producto newProducto) {
 		ModelMapper modelMapper = new ModelMapper();
@@ -55,12 +60,14 @@ public class ProductoController {
 		return productoDTO;
     }
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping
     public String deleteALL() {
 		productoService.deleteAllProducts();
         return "Respuesta desde el metodo DELETE";
     }
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/eliminar/{id}")
     public String deleteProduct	(@PathVariable Long id) {
 		productoService.deleteProduct(id);

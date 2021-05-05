@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,17 +27,22 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("getItems")
 	List<ItemDTO> getAllItem()
 	{
 		return this.transformarDTO(itemService.getAllItems());
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("getItemsVenta/{id}")
 	List<ItemDTO> getItemsByVenta(@PathVariable long id)
 	{
 		return this.transformarDTO(itemService.getItemsByVenta(id));
 	}
 	
+	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("getItemsProducto/{id}")
 	boolean getItemProducto(@PathVariable long id)
 	{
@@ -46,17 +52,22 @@ public class ItemController {
 		}else
 			return false;
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@PutMapping
     public String put() {
         return "Respuesta desde el metodo PUT";
     }
 	
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@PostMapping
     public String post(@RequestBody Item newItem) {
 		this.itemService.AddItem(newItem);
         return "Respuesta desde el metodo POST";
     }
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping
     public String delete() {
 		itemService.deleteAllItems();
