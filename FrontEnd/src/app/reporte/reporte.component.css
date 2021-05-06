@@ -1,51 +1,65 @@
 .container {
-    margin-top: 70px;
-    text-align: center;
-    color: #946447;
-  }
-  
-  .thead-dark {
-    color: whitesmoke;
-    background-color: #946447;
-    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
-      0.5px 0.5px #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000,
-      -0.5px 0.5px 0 #000;
-  }
-  
-  .tabla {
-    
-    padding-right: 50px;
-    padding-left: 50px;
-    padding-bottom: 50px;
-  }
-  
-  .tablaDetail {
-    top: 40%;
-    left: 40%;
-    margin-top: -100px;
-    margin-left: -250px; 
-    width: 800px;
-    background-color: #eaeded;
-    position: fixed;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    z-index: 900;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  #ventas {
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .total {
-    border-top: solid;
-  }
-  .btn {
-    background: #553c2a;
-    border: #553c2a;
-  }
-  
-  th {
-    width: 20%;
-  }
+  margin-top: 70px;
+  text-align: center;
+  color: #946447;
+}
+
+.thead-dark {
+  color: whitesmoke;
+  background-color: #946447;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+    0.5px 0.5px #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px 0.5px 0 #000;
+}
+
+.tabla {
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+}
+
+.tablaDetail {
+  top: 40%;
+  left: 40%;
+  margin-top: -100px;
+  margin-left: -250px;
+  width: 800px;
+  background-color: #eaeded;
+  position: fixed;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 900;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+#ventas {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.total {
+  border-top: solid;
+}
+.btn {
+  background: #553c2a;
+  border: #553c2a;
+}
+
+th {
+  width: 20%;
+}
+
+.paginas {
+  float: right;
+  margin-right: 1%;
+}
+.paginacion {
+  color: honeydew;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  height: 56px;
+  width: 56px;
+  border: none;
+  border-radius: 50%;
+  background: #946447;
+  margin: 5px;
+}

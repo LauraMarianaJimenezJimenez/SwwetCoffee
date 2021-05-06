@@ -28,6 +28,10 @@
       </tr>
     </tbody>
   </table>
+  <div class=" paginas pull-right">
+    <button id="btnAtras" class ="paginacion" (click) = "clickBack()">&#60;</button>
+    <button id="btnSiguiente" class ="paginacion" (click) = "clickNext()">&#62;</button>
+  </div>
 </div>
 
 <div class="tablaDetail" *ngIf="detalle">

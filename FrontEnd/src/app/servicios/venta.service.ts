@@ -35,7 +35,7 @@ export class VentaService {
     return todayString;
   }
 
-  consultarVentas():Observable<any>
+  consultarVentas(page:number, size:number):Observable<any>
   {
     const headerDict = {
       'Authorization': localStorage.getItem('admin') as any
@@ -44,7 +44,20 @@ export class VentaService {
       headers: new HttpHeaders(headerDict)
     }
     
-    let url = "http://localhost:8080/ventas/getVentas"
+    let url = "http://localhost:8080/ventas/getVentas/" + page+ "/" + size
+    return this.http.get<any>(url, options);
+  }
+
+  consultarVentasByMes(mes:number, page:number, size:number):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://localhost:8080/ventas/getVentasMes/"+ mes + "/" + page+ "/" + size
     return this.http.get<any>(url, options);
   }
 

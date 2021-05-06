@@ -15,24 +15,38 @@ import { VentaService } from '../servicios/venta.service';
 export class ReporteComponent implements OnInit {
 
   public ventas: VentaDTO[] = []
-  public todasVentas:VentaDTO[] = []
   public ventaDetalle : VentaDTO = {} as VentaDTO;
   public detalle: boolean = false;
   public valorTotalVenta = 0;
+
+  //Filtro
+  public filtroActual:number = 0;
+
+  //Paginación
+  public sizePagina: number = 10;
+  public pagina:number = 0;
+  public primeraPagina:boolean = true
+  public ultimaPagina:boolean = false;
 
   constructor(private servicioVenta: VentaService) { }
 
   ngOnInit(): void {
 
-    this.servicioVenta.consultarVentas().subscribe(
+   this.consultarVentas()
+    
+  }
+
+  consultarVentas()
+  {
+    this.servicioVenta.consultarVentas(this.pagina, this.sizePagina).subscribe(
       data=>{
-        this.ventas = data
-        this.todasVentas = data
+        this.ventas = data.content
         this.calcularTotalVentas();
+        this.ultimaPagina = data.last
+        this.primeraPagina = data.first
       },
       error=>console.log("error al consultar las ventas")
     );
-    
   }
 
   public verDetalle(ventaDetalle: VentaDTO)
@@ -69,26 +83,48 @@ export class ReporteComponent implements OnInit {
     }
   }
 
-  public filtrarVentas(mes:string)
+  public filtrarVentas(mes:number)
   {
-    var ventasFiltradas: VentaDTO[] = []
-    if(mes === '-0-')
+    if(mes !== this.filtroActual)
     {
-      this.ventas = this.todasVentas;
+      this.pagina = 0
+      this.filtroActual = mes
+    }
+    if(mes === 0)
+    {
+      this.consultarVentas();
     }
     else
     {
-      for(let venta of this.todasVentas)
-      {
-        if(venta.fecha.includes(mes))
-        {
-          ventasFiltradas.push(venta);
-        }
-      }
-      this.ventas = ventasFiltradas;
-    }
-    this.calcularTotalVentas();
+      this.servicioVenta.consultarVentasByMes(mes,this.pagina, this.sizePagina).subscribe(
+        data=>{
+          this.ventas = data.content
+          this.ultimaPagina = data.last
+          this.primeraPagina = data.first
+          this.calcularTotalVentas();
+        },
+        error=>console.log("error al consultar las ventas")
+      );
   }
+}
+
+public clickNext()
+{
+  if(!this.ultimaPagina)
+  {
+    this.pagina++
+    this.filtrarVentas(this.filtroActual)
+  }
+}
+
+public clickBack()
+{
+  if(!this.primeraPagina)
+  {
+    this.pagina--
+    this.filtrarVentas(this.filtroActual)
+  }
+}
 
   
 
