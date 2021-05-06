@@ -2,6 +2,8 @@ package com.example.springdata.springjpa.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.springdata.springjpa.model.Venta;
@@ -14,8 +16,8 @@ public class VentaServiceImpl implements VentaService{
 	VentaRepository ventaRepository;
 
 	@Override
-	public Iterable<Venta> getAllVentas() {
-		return ventaRepository.findAll();
+	public Page<Venta> getAllVentas(PageRequest pageRequest) {
+		return ventaRepository.findAll(pageRequest);
 	}
 
 	@Override
@@ -25,18 +27,18 @@ public class VentaServiceImpl implements VentaService{
 	}
 
 	@Override
-	public Iterable<Venta> getVentasByUsuario(String email) {
-		return ventaRepository.findByUsuario(email);
+	public Page<Venta> getVentasByUsuario(String email, PageRequest pageRequest) {
+		return ventaRepository.findByUsuario(email, pageRequest);
 	}
 
 	@Override
-	public Venta AddVenta(Venta newVenta) {
+	public Venta addVenta(Venta newVenta) {
 		return ventaRepository.save(newVenta);
 	}
 
 	@Override
-	public Iterable<Venta> getVentasByMes(int mes) {
-		return ventaRepository.findByMes(mes);
+	public Page<Venta> getVentasByMes(int mes, PageRequest pageRequest) {
+		return ventaRepository.findByMes(mes, pageRequest);
 	}
 		
 }

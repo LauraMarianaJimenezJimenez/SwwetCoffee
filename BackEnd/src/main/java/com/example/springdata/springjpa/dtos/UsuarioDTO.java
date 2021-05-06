@@ -1,11 +1,16 @@
 package com.example.springdata.springjpa.dtos;
 
 public class UsuarioDTO {
-	public String email;
-	public String nombre;
-	public String apellido;
-	public String contrasena;
-	public long celular;
+	
+	private String email;
+	
+	private String nombre;
+	
+	private String apellido;
+	
+	private String contrasena;
+	
+	private long celular;
 	
 	public String getEmail() {
 		return email;

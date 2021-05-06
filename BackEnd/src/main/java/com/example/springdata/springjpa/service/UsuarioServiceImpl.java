@@ -3,6 +3,8 @@ package com.example.springdata.springjpa.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.springdata.springjpa.model.Rol;
@@ -16,8 +18,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private UserRepositoryWithQuery userRepository;
 	
 	@Override
-	public Iterable<Usuario> getAllUsers() {
-		return userRepository.findAll();
+	public Page<Usuario> getAllUsers(PageRequest pageRequest) {
+		return userRepository.findAll(pageRequest);
 	}
 
 	@Override

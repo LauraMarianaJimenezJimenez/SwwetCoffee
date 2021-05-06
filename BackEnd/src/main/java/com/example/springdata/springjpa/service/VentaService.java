@@ -1,18 +1,21 @@
 package com.example.springdata.springjpa.service;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.example.springdata.springjpa.model.Venta;
 
 public interface VentaService {
 	
-	Iterable<Venta> getAllVentas();
+	Page<Venta> getAllVentas(PageRequest pageRequest);
 
 	void deleteAllVentas();
 
-	Iterable<Venta> getVentasByUsuario(String email);
+	Page<Venta> getVentasByUsuario(String email, PageRequest pageRequest);
 
-	Venta AddVenta(Venta newVenta);
+	Venta addVenta(Venta newVenta);
 
-	Iterable<Venta> getVentasByMes(int mes);
+	Page<Venta> getVentasByMes(int mes, PageRequest pageRequest);
 	
 }

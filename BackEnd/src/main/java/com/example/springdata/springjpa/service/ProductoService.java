@@ -13,7 +13,7 @@ public interface ProductoService {
 	
 	Page<Producto> getByCategoria(String categoria, PageRequest pageRequest);
 
-	Producto AddProducto(Producto newProducto);
+	Producto addProducto(Producto newProducto);
 
 	void deleteAllProducts();
 

@@ -18,10 +18,15 @@ import javax.persistence.Table;
 public class Usuario {
 	@Id
 	private String email;
+	
 	private String nombre;
+	
 	private String apellido;
+	
 	private String contrasena;
+	
 	private long celular;
+	
 	@OneToMany(mappedBy = "usuario")
 	private List<Venta> compras;
 

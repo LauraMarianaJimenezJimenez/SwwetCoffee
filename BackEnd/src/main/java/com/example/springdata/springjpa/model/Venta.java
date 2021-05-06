@@ -23,57 +23,57 @@ public class Venta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	
+
 	private int valor;
-	
+
 	@ManyToOne
 	private Usuario usuario;
-	
+
 	@OneToMany(mappedBy = "venta", fetch = FetchType.EAGER)
 	private List<Item> items;
 
 
 
-public long getId() {
+	public long getId() {
 		return id;
 	}
-public void setId(long id) {
-	this.id = id;
-}
-public Date getFecha() {
-	return fecha;
-}
-public void setFecha(Date fecha) {
-	this.fecha = fecha;
-}
-public Usuario getUsuario() {
-	return usuario;
-}
-public void setUsuario(Usuario usuario) {
-	this.usuario = usuario;
-}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
-public List<Item> getItems() {
-	return items;
-}
-public void setItems(List<Item> items) {
-	this.items = items;
-}
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 
-public int getValor() {
-	return valor;
-}
-public void setValor(int valor) {
-	this.valor = valor;
-}
-@Override
-public String toString() {
-	return "ID: " + id + "Date: " + fecha.toString();
-}
+	public int getValor() {
+		return valor;
+	}
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+	@Override
+	public String toString() {
+		return "ID: " + id + "Date: " + fecha.toString();
+	}
 
-	
-	
+
+
 }

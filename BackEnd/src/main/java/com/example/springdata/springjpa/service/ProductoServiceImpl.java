@@ -31,7 +31,7 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 	@Override
-	public Producto AddProducto(Producto newProducto) {
+	public Producto addProducto(Producto newProducto) {
 		return productoRepository.save(newProducto);
 	}
 

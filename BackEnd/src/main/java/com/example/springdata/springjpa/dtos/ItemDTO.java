@@ -2,11 +2,11 @@ package com.example.springdata.springjpa.dtos;
 
 public class ItemDTO {
 	
-	public int precioVenta;
+	private int precioVenta;
 	
-	public int cantidad;
+	private int cantidad;
 	
-	public String nombreProducto;
+	private String nombreProducto;
 
 	public int getPrecioVenta() {
 		return precioVenta;

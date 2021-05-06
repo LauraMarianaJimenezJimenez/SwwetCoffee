@@ -4,10 +4,13 @@ import java.util.Date;
 
 public class VentaDTO {
 	
-	public long id;
-	public int valor;
-	public Date fecha;
-	public String nombreUsuario;
+	private long id;
+	
+	private int valor;
+	
+	private Date fecha;
+	
+	private String nombreUsuario;
 	
 	public long getId() {
 		return id;

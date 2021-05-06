@@ -13,17 +13,17 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long id;
+	private long id;
 	
-	public int precioVenta;
+	private int precioVenta;
 	
-	public int cantidad;
+	private int cantidad;
 	
 	@ManyToOne
-	public Venta venta;
+	private Venta venta;
 	
 	@OneToOne
-	public Producto producto;
+	private Producto producto;
 	
 	
 	public long getId() {
