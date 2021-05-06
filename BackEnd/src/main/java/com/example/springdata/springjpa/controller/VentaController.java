@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springdata.springjpa.dtos.VentaDTO;
-import com.example.springdata.springjpa.model.Usuario;
+import com.example.springdata.springjpa.dtos.VentaTotalDTO;
+
 import com.example.springdata.springjpa.model.Venta;
 import com.example.springdata.springjpa.service.VentaService;
 
@@ -49,6 +51,18 @@ public class VentaController {
 	Page<VentaDTO> getVentasByUsuario(@PathVariable String email, @PathVariable int page, @PathVariable int size)
 	{
 		return transformarDTO(ventaService.getVentasByUsuario(email, PageRequest.of(page, size)), PageRequest.of(page, size));
+	}
+	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@GetMapping("getTotalVentas")
+	VentaTotalDTO getTotalVentas(@RequestParam(name = "mes", required = false, defaultValue = "0") int mes)
+	{
+		VentaTotalDTO ventaDTO = new VentaTotalDTO();
+		int totalVentas = ventaService.getTotalVentas(mes);
+		int valorTotalVentas = ventaService.getValorTotalVentas(mes);
+		ventaDTO.setNumeroTotalVentas(totalVentas);
+		ventaDTO.setValorTotalVentas(valorTotalVentas);
+		return ventaDTO;
 	}
 
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})

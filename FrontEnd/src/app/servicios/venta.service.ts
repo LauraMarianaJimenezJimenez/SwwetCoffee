@@ -61,7 +61,23 @@ export class VentaService {
     return this.http.get<any>(url, options);
   }
 
-  consultarItemsVenta(venta : VentaDTO):Observable<any>
+  consultarTotalVentas(mes:number):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    let url = "http://localhost:8080/ventas/getTotalVentas"
+    if(mes != 0)
+    {
+      url = url + "?mes=" + mes
+    }
+    return this.http.get<any>(url, options);
+  }
+
+  consultarItemsVenta(venta : VentaDTO, page:number, size:number):Observable<any>
   {
     const headerDict = {
       'Authorization': localStorage.getItem('user') as any
@@ -70,7 +86,7 @@ export class VentaService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/items/getItemsVenta/"+venta.id
+    let url = "http://localhost:8080/items/getItemsVenta/"+venta.id + "/" + page+ "/" + size
     return this.http.get<any>(url,options);
   }
 }

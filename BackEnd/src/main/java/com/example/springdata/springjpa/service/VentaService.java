@@ -1,6 +1,8 @@
 package com.example.springdata.springjpa.service;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -17,5 +19,9 @@ public interface VentaService {
 	Venta addVenta(Venta newVenta);
 
 	Page<Venta> getVentasByMes(int mes, PageRequest pageRequest);
+
+	int getTotalVentas(int mes);
+
+	int getValorTotalVentas(int mes);
 	
 }

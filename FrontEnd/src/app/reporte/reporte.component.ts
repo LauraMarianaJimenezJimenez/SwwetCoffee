@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VentaDTO } from '../DTOs/VentaDTO';
+import { VentaTotalDTO } from '../DTOs/VentaTotalDTO';
 import { Usuario } from '../Modelos/usuario.model';
 import { Venta } from '../Modelos/venta.model';
 import { VentaService } from '../servicios/venta.service';
@@ -17,16 +18,24 @@ export class ReporteComponent implements OnInit {
   public ventas: VentaDTO[] = []
   public ventaDetalle : VentaDTO = {} as VentaDTO;
   public detalle: boolean = false;
-  public valorTotalVenta = 0;
+
+  //VentaTotalDTO
+  public ventaTotal:VentaTotalDTO = {} as VentaTotalDTO;
 
   //Filtro
   public filtroActual:number = 0;
 
-  //Paginación
+  //Paginación Ventas
   public sizePagina: number = 10;
   public pagina:number = 0;
   public primeraPagina:boolean = true
   public ultimaPagina:boolean = false;
+
+  //Paginción items
+  public sizePaginaItem: number = 5;
+  public paginaItem:number = 0;
+  public primeraPaginaItem:boolean = true
+  public ultimaPaginaItem:boolean = false;
 
   constructor(private servicioVenta: VentaService) { }
 
@@ -53,14 +62,9 @@ export class ReporteComponent implements OnInit {
   {
     if(!this.detalle)
     {
-      this.ventaDetalle = ventaDetalle;
-      this.servicioVenta.consultarItemsVenta(ventaDetalle).subscribe(
-        data =>{
-          this.ventaDetalle.items = data;
-        },
-        error=>"No se pudo consultar los items de esta venta"
-      )
       this.detalle = true;
+      this.ventaDetalle = ventaDetalle;
+      this.consultarItemsVenta()
     }
       
   }
@@ -71,16 +75,35 @@ export class ReporteComponent implements OnInit {
     {
       this.detalle = false;
       this.ventaDetalle = {} as VentaDTO;
+      this.paginaItem = 0;
     }
+  }
+
+  public consultarItemsVenta()
+  {
+    this.servicioVenta.consultarItemsVenta(this.ventaDetalle, this.paginaItem, this.sizePaginaItem).subscribe(
+      data =>{
+        this.ventaDetalle.items = data.content;
+        this.ultimaPaginaItem = data.last
+        this.primeraPaginaItem = data.first
+      },
+      error=>"No se pudo consultar los items de esta venta"
+    )
   }
 
   public calcularTotalVentas()
   {
-    this.valorTotalVenta = 0;
-    for(let venta of this.ventas)
-    {
-      this.valorTotalVenta = this.valorTotalVenta + venta.valor;
-    }
+    this.servicioVenta.consultarTotalVentas(this.filtroActual).subscribe(
+      data => {
+        this.ventaTotal = data
+      },
+      error => 
+      {
+        console.log("No se pudo recuperar el total de las ventas")
+        this.ventaTotal.numeroTotalVentas = 0;
+        this.ventaTotal.valorTotalVentas = 0;
+      }
+    )
   }
 
   public filtrarVentas(mes:number)
@@ -126,6 +149,23 @@ public clickBack()
   }
 }
 
-  
+public clickNextItem()
+{
+  if(!this.ultimaPaginaItem)
+  {
+    this.paginaItem++
+    this.consultarItemsVenta()
+  }
+}
+
+public clickBackItem()
+{
+  if(!this.primeraPaginaItem)
+  {
+    this.paginaItem--
+    this.consultarItemsVenta()
+  }
+}
+
 
 }

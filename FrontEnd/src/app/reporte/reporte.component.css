@@ -63,3 +63,32 @@ th {
   background: #946447;
   margin: 5px;
 }
+
+#valorTotal
+{
+  margin-left: 2%;
+}
+
+.paginaItem
+{
+  margin-top: -2%;
+  float: left;
+  width: 20%;
+}
+
+.paginaItem span
+{
+  margin: 2%;
+}
+
+#atrasItem:hover
+{
+  cursor: pointer;
+  color: rgb(202, 141, 85);
+}
+
+#delanteItem:hover
+{
+  cursor: pointer;
+  color: rgb(202, 141, 85);
+}

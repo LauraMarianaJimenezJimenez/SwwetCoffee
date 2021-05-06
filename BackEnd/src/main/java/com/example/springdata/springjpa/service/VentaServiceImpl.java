@@ -1,6 +1,8 @@
 package com.example.springdata.springjpa.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,6 +41,29 @@ public class VentaServiceImpl implements VentaService{
 	@Override
 	public Page<Venta> getVentasByMes(int mes, PageRequest pageRequest) {
 		return ventaRepository.findByMes(mes, pageRequest);
+	}
+
+	@Override
+	public int getTotalVentas(int mes) {
+		if( mes == 0)
+		{
+			return ventaRepository.findNumeroTotal();
+		}else
+		{
+			return ventaRepository.findNumeroTotal(mes);
+		}
+	}
+
+	@Override
+	public int getValorTotalVentas(int mes) {
+		if(mes==0)
+		{
+			return ventaRepository.findValorTotal();
+		}else
+		{
+			return ventaRepository.findValorTotal(mes);
+		}
+		
 	}
 		
 }
