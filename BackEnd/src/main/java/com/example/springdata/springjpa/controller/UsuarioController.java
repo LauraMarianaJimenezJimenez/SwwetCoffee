@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springdata.springjpa.dtos.RolDTO;
 import com.example.springdata.springjpa.dtos.UsuarioDTO;
+import com.example.springdata.springjpa.exceptions.UsuarioAlreadyExsistsException;
 import com.example.springdata.springjpa.model.Rol;
 import com.example.springdata.springjpa.model.Usuario;
 import com.example.springdata.springjpa.service.UsuarioService;
@@ -64,7 +65,14 @@ public class UsuarioController {
 	
 	@PostMapping("registrar")
     public Usuario post(@RequestBody Usuario newUsuario) {
-        return usuarioService.AddUser(newUsuario);
+		Usuario agregado = usuarioService.addUser(newUsuario);
+        if(agregado != null)
+        {
+        	return agregado;
+        }else
+        {
+        	throw new UsuarioAlreadyExsistsException(newUsuario.getEmail());
+        }
     }
 	
 	@Secured("ROLE_ADMIN")

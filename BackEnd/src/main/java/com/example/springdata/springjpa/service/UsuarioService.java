@@ -16,7 +16,7 @@ public interface UsuarioService {
 
 	void deleteAllUsers();
 
-	Usuario AddUser(Usuario newUsuario);
+	Usuario addUser(Usuario newUsuario);
 
 	Rol getRol(String email);
 

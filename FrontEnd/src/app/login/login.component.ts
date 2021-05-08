@@ -60,8 +60,7 @@ export class LoginComponent implements OnInit {
         });
       },
       (error) => {
-        console.log('No se encontró usuario');
-        alert('Usuario no encontrado');
+        alert('Usuario y/o contraseña incorrectos');
       }
     );
   }
