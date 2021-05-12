@@ -39,13 +39,13 @@ export class UsuarioService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/usuarios/getUsuario/" + email
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/usuarios/getUsuario/" + email
     return this.http.get<any>(url,options)
   }
 
   login(usuario:Usuario):Observable<any>
   {
-    let url = "http://localhost:8080/login"
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/login"
     return this.http.post<any>(url,usuario,{observe: 'response'})
   }
 
@@ -57,13 +57,13 @@ export class UsuarioService {
     let options = {
       headers: new HttpHeaders(headerDict)
     }
-    let url = "http://localhost:8080/usuarios/getRol/" + usuario.email
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/usuarios/getRol/" + usuario.email
     return this.http.get<any>(url,options)
   }
 
   registrar(newUsuario:Usuario):Observable<any>
   {
-    let url = "http://localhost:8080/usuarios/registrar"
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/usuarios/registrar"
     return this.http.post<any>(url, newUsuario)
   }
   

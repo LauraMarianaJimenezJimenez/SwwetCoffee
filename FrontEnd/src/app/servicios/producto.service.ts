@@ -36,7 +36,7 @@ export class ProductoService {
       headers: new HttpHeaders(headerDict)
     }
     
-    let url = "http://localhost:8080/productos/getProductos/"+page+"/"+size
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/getProductos/"+page+"/"+size
     return this.http.get<any>(url,options);
   }
 
@@ -49,7 +49,7 @@ export class ProductoService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/productos/actualizar/"+producto.id
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/actualizar/"+producto.id
     return this.http.put<any>(url,producto,options);
   }
 
@@ -62,7 +62,7 @@ export class ProductoService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/productos"
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos"
     return this.http.post<any>(url,producto,options)
   }
 
@@ -75,7 +75,7 @@ export class ProductoService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/productos/eliminar/" + producto.id
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/eliminar/" + producto.id
     return this.http.delete<any>(url,options);
   }
 
@@ -88,7 +88,7 @@ export class ProductoService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/items/getItemsProducto/"+producto.id
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items/getItemsProducto/"+producto.id
     return this.http.get<any>(url,options);
   }
 }

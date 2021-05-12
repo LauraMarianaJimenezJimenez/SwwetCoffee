@@ -44,7 +44,7 @@ export class VentaService {
       headers: new HttpHeaders(headerDict)
     }
     
-    let url = "http://localhost:8080/ventas/getVentas/" + page+ "/" + size
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/ventas/getVentas/" + page+ "/" + size
     return this.http.get<any>(url, options);
   }
 
@@ -57,7 +57,7 @@ export class VentaService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/ventas/getVentasMes/"+ mes + "/" + page+ "/" + size
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/ventas/getVentasMes/"+ mes + "/" + page+ "/" + size
     return this.http.get<any>(url, options);
   }
 
@@ -69,7 +69,7 @@ export class VentaService {
     let options = {
       headers: new HttpHeaders(headerDict)
     }
-    let url = "http://localhost:8080/ventas/getTotalVentas"
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/ventas/getTotalVentas"
     if(mes != 0)
     {
       url = url + "?mes=" + mes
@@ -86,7 +86,7 @@ export class VentaService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://localhost:8080/items/getItemsVenta/"+venta.id + "/" + page+ "/" + size
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items/getItemsVenta/"+venta.id + "/" + page+ "/" + size
     return this.http.get<any>(url,options);
   }
 }
