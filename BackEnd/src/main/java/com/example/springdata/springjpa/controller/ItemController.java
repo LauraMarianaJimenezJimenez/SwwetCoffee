@@ -74,6 +74,18 @@ public class ItemController {
         return false;
     }
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@PostMapping("agregarItems")
+    public boolean agregarItems(@RequestBody List<Item> newItems) {
+		for (Item item : newItems) {
+			if(this.itemService.addItem(item) == null)
+			{
+				return false;
+			}
+		}
+        return true;
+    }
+	
 	@Secured("ROLE_ADMIN")
 	@DeleteMapping
     public boolean delete() {

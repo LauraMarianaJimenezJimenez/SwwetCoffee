@@ -73,8 +73,13 @@ public class VentaController {
 
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping
-	public Venta post(@RequestBody Venta newVenta) {
-		return ventaService.addVenta(newVenta);
+	public VentaDTO post(@RequestBody Venta newVenta) {
+		VentaDTO vDTO =  new VentaDTO();
+		Venta v= ventaService.addVenta(newVenta);
+		vDTO.setFecha(v.getFecha());
+		vDTO.setId(v.getId());
+		vDTO.setValor(v.getValor());
+		return vDTO;
 	}
 
 	@Secured("ROLE_ADMIN")

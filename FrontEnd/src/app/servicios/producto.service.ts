@@ -40,6 +40,29 @@ export class ProductoService {
     return this.http.get<any>(url,options);
   }
 
+  consultarProductosByCategoria(page:number, size: number, categoria:number):Observable<any>
+  {
+    var categoriaString:string
+    if(categoria === 0)
+    {
+      categoriaString = "bebidas"
+    }else if(categoria === 1)
+    {
+      categoriaString = "pasteleria"
+    }else{
+      categoriaString = "grano"
+    }
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/getProductosCategoria/"+categoriaString + "/"+page+"/"+size
+    return this.http.get<any>(url,options);
+  }
+
   actualizarProducto(producto:Producto):Observable<any>
   {
     const headerDict = {

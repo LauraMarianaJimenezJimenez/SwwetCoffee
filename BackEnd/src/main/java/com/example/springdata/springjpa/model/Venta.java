@@ -1,6 +1,9 @@
 package com.example.springdata.springjpa.model;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,8 +49,13 @@ public class Venta {
 	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFecha(String fecha) {
+		try {
+			this.fecha = getDate(fecha);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public Usuario getUsuario() {
 		return usuario;
@@ -72,6 +80,11 @@ public class Venta {
 	@Override
 	public String toString() {
 		return "ID: " + id + "Date: " + fecha.toString();
+	}
+	
+	Date getDate(String fecha) throws ParseException{
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return dateFormat.parse(fecha);
 	}
 
 

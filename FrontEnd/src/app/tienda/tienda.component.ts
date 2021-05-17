@@ -19,34 +19,72 @@ export class TiendaComponent implements OnInit {
   public venta: Venta =  {} as Venta
   public productosAgregados : Item[] = []
 
+  //Filtro
+  public filtroActual:number = -1;
+
+   //Paginación Productos
+   public sizePagina: number = 6;
+   public pagina:number = 0;
+   public primeraPagina:boolean = true
+   public ultimaPagina:boolean = false;
+ 
+
   constructor(private productoService: ProductoService, private ventaService: VentaService, private router:Router) {}
 
   ngOnInit(): void {
-    this.productos = this.productoService.getProductos();
+    this.consultarProductos();
+  }
+
+  consultarProductos()
+  {
+    this.productoService.consultarProductos(this.pagina, this.sizePagina).subscribe(
+      data=>{
+        this.productos = data.content
+        this.ultimaPagina = data.last
+        this.primeraPagina = data.first
+      },
+      error=>console.log("error al consultar las ventas")
+    );
   }
 
   public filtrarProductos(categoria: number) {
-    var productosFiltrados: Producto[] = [];
+  
+    if(categoria !== this.filtroActual)
+    {
+      this.pagina = 0
+      this.filtroActual = categoria
+    }
     if (categoria === -1) {
-      this.productos = this.productoService.getProductos();
+      this.consultarProductos();
     } else {
-      for (let pro of this.productoService.getProductos()) {
-        if (categoria === Categoria.BEBIDAS && pro.categoria === Categoria.BEBIDAS)
-        {
-          productosFiltrados.push(pro);
-        }
-        if (categoria === Categoria.PASTELERIA && pro.categoria === Categoria.PASTELERIA)
-        {
-          productosFiltrados.push(pro);
-        }
-        if (categoria === Categoria.GRANO && pro.categoria === Categoria.GRANO)
-        {
-          productosFiltrados.push(pro);
-        }
-      }
-      this.productos = productosFiltrados;
+      this.productoService.consultarProductosByCategoria(this.pagina, this.sizePagina,categoria).subscribe(
+        data=>{
+          this.productos = data.content
+          this.ultimaPagina = data.last
+          this.primeraPagina = data.first
+        },
+        error=>console.log("error al consultar los productos")
+      );
     }
   }
+
+  public clickNext()
+{
+  if(!this.ultimaPagina)
+  {
+    this.pagina++
+    this.filtrarProductos(this.filtroActual)
+  }
+}
+
+public clickBack()
+{
+  if(!this.primeraPagina)
+  {
+    this.pagina--
+    this.filtrarProductos(this.filtroActual)
+  }
+}
 
   public agregarItem(prod:Producto, canti:number)
   {
@@ -72,9 +110,18 @@ export class TiendaComponent implements OnInit {
   public realizarCompra()
   {
     var fecha:string = this.ventaService.obtenerFechaHoy();
-    var id:number = -1;
-    this.venta = new Venta(fecha,id,this.productosAgregados,{} as Usuario);
-    this.ventaService.agregarVenta(this.venta);
-    this.router.navigateByUrl('/resumen-compra');
+    this.venta = new Venta(fecha,-1,this.productosAgregados,{} as Usuario);
+    this.venta.items=[];
+    this.ventaService.agregarVenta(this.venta).subscribe(
+      data =>{
+        this.ventaService.ventaProceso = data;
+        this.ventaService.ventaProceso.items = this.productosAgregados;
+        this.router.navigateByUrl('/resumen-compra');
+      },
+      error=>
+      {
+        console.log("Error al agregar una venta")
+      }
+    );
   }
 }

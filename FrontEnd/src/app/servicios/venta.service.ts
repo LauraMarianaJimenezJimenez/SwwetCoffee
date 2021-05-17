@@ -5,6 +5,7 @@ import { ProductoService } from './producto.service';
 import { UsuarioService } from './usuario.service';
 import { Observable } from 'rxjs';
 import { VentaDTO } from '../DTOs/VentaDTO';
+import { Item } from '../Modelos/item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,24 @@ import { VentaDTO } from '../DTOs/VentaDTO';
 export class VentaService {
    
    public ventas: Venta[] = []
-   public ventaProceso: Venta = {} as Venta
+   public ventaProceso: Venta = {} as Venta;
 
   constructor(private servicioProducto : ProductoService, private servicioUsuario : UsuarioService, private http:HttpClient) {
     servicioUsuario.usuario1.compras = [];
 
    }
-  public agregarVenta(ventaNueva : Venta)
+  public agregarVenta(ventaNueva : Venta):Observable<any>
   {
-    this.ventaProceso = ventaNueva;
+    ventaNueva.usuario = this.servicioUsuario.usuarioActivo;
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/ventas"
+    return this.http.post<any>(url,ventaNueva, options);
   }
 
   public obtenerFechaHoy(): string
@@ -88,5 +98,18 @@ export class VentaService {
 
     let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items/getItemsVenta/"+venta.id + "/" + page+ "/" + size
     return this.http.get<any>(url,options);
+  }
+
+  agregarItemsVenta(items : Item[]):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items"
+    return this.http.post<any>(url,items, options);
   }
 }
