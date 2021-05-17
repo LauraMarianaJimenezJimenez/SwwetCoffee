@@ -18,15 +18,16 @@ export class ResumenComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.ventaServicio.ventaProceso.items;
+    this.ventaServicio.ventaProceso.items = [];
     this.precioTotal = this.ventaServicio.ventaProceso.valor
+    for (let item of this.items) {
+      item.venta = this.ventaServicio.ventaProceso
+    }
   }
 
   public confirmarCompra()
   {
-    for (let item of this.items) {
-      item.venta = this.ventaServicio.ventaProceso
-    }
-      this.ventaServicio.agregarItemsVenta(this.items).subscribe(
+    this.ventaServicio.agregarItemsVenta(this.items).subscribe(
         data=>{
             this.ventaServicio.ventaProceso = {} as Venta;
             alert("Compra realizada con éxito");

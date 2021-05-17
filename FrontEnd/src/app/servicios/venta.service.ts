@@ -109,7 +109,7 @@ export class VentaService {
       headers: new HttpHeaders(headerDict)
     }
 
-    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items"
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items/agregarItems"
     return this.http.post<any>(url,items, options);
   }
 }
