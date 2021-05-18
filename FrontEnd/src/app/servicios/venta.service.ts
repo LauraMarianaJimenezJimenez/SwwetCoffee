@@ -6,6 +6,7 @@ import { UsuarioService } from './usuario.service';
 import { Observable } from 'rxjs';
 import { VentaDTO } from '../DTOs/VentaDTO';
 import { Item } from '../Modelos/item.model';
+import { Usuario } from '../Modelos/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -111,5 +112,19 @@ export class VentaService {
 
     let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items/agregarItems"
     return this.http.post<any>(url,items, options);
+  }
+
+  consultarComprasByEmail(usuarioActivo: Usuario, page: number, size: number)
+   {
+
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/ventas/getVentasUsuario/"+ usuarioActivo.email + "/" + page+ "/" + size
+    return this.http.get<any>(url, options);
   }
 }

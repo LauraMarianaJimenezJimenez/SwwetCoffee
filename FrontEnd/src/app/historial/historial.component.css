@@ -46,3 +46,42 @@
 th {
   width: 25%;
 }
+
+.paginas {
+  float: right;
+  margin-right: 1%;
+}
+.paginacion {
+  color: honeydew;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  height: 56px;
+  width: 56px;
+  border: none;
+  border-radius: 50%;
+  background: #946447;
+  margin: 5px;
+}
+
+.paginaItem
+{
+  margin-top: -2%;
+  float: left;
+  width: 20%;
+}
+
+.paginaItem span
+{
+  margin: 2%;
+}
+
+#atrasItem:hover
+{
+  cursor: pointer;
+  color: rgb(202, 141, 85);
+}
+
+#delanteItem:hover
+{
+  cursor: pointer;
+  color: rgb(202, 141, 85);
+}
