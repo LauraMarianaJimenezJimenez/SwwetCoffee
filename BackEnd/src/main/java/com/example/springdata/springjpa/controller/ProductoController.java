@@ -70,7 +70,7 @@ public class ProductoController {
 	
 	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/eliminar/{id}")
-    public boolean deleteProduct	(@PathVariable Long id) {
+    public boolean deleteProduct(@PathVariable Long id) {
 		productoService.deleteProduct(id);
         return true;
     }
