@@ -37,7 +37,7 @@ export class TiendaComponent implements OnInit {
 
   consultarProductos()
   {
-    this.productoService.consultarProductos(this.pagina, this.sizePagina).subscribe(
+    this.productoService.consultarProductosTienda(this.pagina, this.sizePagina).subscribe(
       data=>{
         this.productos = data.content
         this.ultimaPagina = data.last

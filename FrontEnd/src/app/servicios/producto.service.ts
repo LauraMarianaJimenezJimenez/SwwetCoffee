@@ -40,6 +40,19 @@ export class ProductoService {
     return this.http.get<any>(url,options);
   }
 
+  consultarProductosTienda(page:number,size:number):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/getProductosU/"+page+"/"+size
+    return this.http.get<any>(url,options);
+  }
+
   consultarProductosByCategoria(page:number, size: number, categoria:number):Observable<any>
   {
     var categoriaString:string
