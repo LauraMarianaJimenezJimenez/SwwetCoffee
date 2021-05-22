@@ -12,7 +12,7 @@ import com.example.springdata.springjpa.model.Producto;
 @Repository
 public interface ProductoRepository extends PagingAndSortingRepository<Producto, Long> {
 	
-	@Query("SELECT p FROM Producto p WHERE p.categoria = :categoria")
+	@Query("SELECT p FROM Producto p WHERE p.categoria = :categoria AND p.activo = true")
 	Page<Producto> findByCategoria(Categoria categoria,Pageable pageable);
 
 	@Query("SELECT p FROM Producto p WHERE p.activo = true")
