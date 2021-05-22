@@ -18,4 +18,11 @@ public class ControlAdviceSweetCoffee {
 		return ex.getMessage();
 	}
 
+	@ResponseBody
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(value  = HttpStatus.INTERNAL_SERVER_ERROR)
+	String networkErrorHandler(Exception e)
+	{
+		return e.getMessage();
+	}
 }

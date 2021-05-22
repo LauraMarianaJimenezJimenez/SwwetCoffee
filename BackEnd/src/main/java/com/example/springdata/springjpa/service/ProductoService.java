@@ -21,4 +21,6 @@ public interface ProductoService {
 
 	Producto actualizarProducto(Producto newProducto, Long id);
 
+	Page<Producto> getAllProdcutsU(PageRequest of);
+
 }

@@ -31,11 +31,18 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("getProductos/{page}/{size}")
 	Page<ProductoDTO> getAllProductos(@PathVariable int page, @PathVariable int size)
 	{
 		return transformarDTO(productoService.getAllProdcuts(PageRequest.of(page, size)), PageRequest.of(page, size));
+	}
+	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@GetMapping("getProductosU/{page}/{size}")
+	Page<ProductoDTO> getAllProductosU(@PathVariable int page, @PathVariable int size)
+	{
+		return transformarDTO(productoService.getAllProdcutsU(PageRequest.of(page, size)), PageRequest.of(page, size));
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})

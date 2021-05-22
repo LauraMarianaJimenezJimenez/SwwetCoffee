@@ -19,6 +19,7 @@ public class VentaServiceImpl implements VentaService{
 
 	@Override
 	public Page<Venta> getAllVentas(PageRequest pageRequest) {
+		ventaRepository.deleteVentasSinItems();
 		return ventaRepository.findAll(pageRequest);
 	}
 
@@ -30,6 +31,7 @@ public class VentaServiceImpl implements VentaService{
 
 	@Override
 	public Page<Venta> getVentasByUsuario(String email, PageRequest pageRequest) {
+		ventaRepository.deleteVentasSinItems();
 		return ventaRepository.findByUsuario(email, pageRequest);
 	}
 

@@ -1,6 +1,7 @@
 package com.example.springdata.springjpa.repository;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -13,5 +14,8 @@ public interface ProductoRepository extends PagingAndSortingRepository<Producto,
 	
 	@Query("SELECT p FROM Producto p WHERE p.categoria = :categoria")
 	Page<Producto> findByCategoria(Categoria categoria,Pageable pageable);
+
+	@Query("SELECT p FROM Producto p WHERE p.activo = true")
+	Page<Producto> findActivos(Pageable pageable);
 
 }

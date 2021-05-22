@@ -66,6 +66,11 @@ public class ProductoServiceImpl implements ProductoService{
 		}).get();
 
 	}
+
+	@Override
+	public Page<Producto> getAllProdcutsU(PageRequest of) {
+		return productoRepository.findActivos(of);
+	}
 	
 
 }
