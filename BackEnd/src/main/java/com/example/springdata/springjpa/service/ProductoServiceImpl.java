@@ -31,7 +31,7 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 	@Override
-	public Producto AddProducto(Producto newProducto) {
+	public Producto addProducto(Producto newProducto) {
 		return productoRepository.save(newProducto);
 	}
 
@@ -65,6 +65,11 @@ public class ProductoServiceImpl implements ProductoService{
 			
 		}).get();
 
+	}
+
+	@Override
+	public Page<Producto> getAllProdcutsU(PageRequest of) {
+		return productoRepository.findActivos(of);
 	}
 	
 

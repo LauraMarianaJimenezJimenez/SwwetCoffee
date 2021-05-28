@@ -1,6 +1,8 @@
 <h2 class="container"><b>Reporte de Ventas</b></h2>
 <app-filtro-reporte></app-filtro-reporte>
 <div class="tabla">
+  <span><b>Número total de ventas:</b> {{ventaTotal.numeroTotalVentas}} </span>
+  <span id = valorTotal><b>Valor total:</b> {{ventaTotal.valorTotalVentas}} </span>
   <table class="table" id="ventas">
     <thead class="thead-dark">
       <tr>
@@ -19,15 +21,12 @@
         <td>{{venta.nombreUsuario}}</td>
         <td><button class="btn btn-primary" (click) = "verDetalle(venta)">Ver Detalle</button></td>
       </tr>
-      <tr class="total">
-        <td><b>Total</b></td>
-        <td>-</td>
-        <td>{{valorTotalVenta}}</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
     </tbody>
   </table>
+  <div class=" paginas pull-right">
+    <button id="btnAtras" class ="paginacion" (click) = "clickBack()">&#60;</button>
+    <button id="btnSiguiente" class ="paginacion" (click) = "clickNext()">&#62;</button>
+  </div>
 </div>
 
 <div class="tablaDetail" *ngIf="detalle">
@@ -64,6 +63,10 @@
         </tr>
     </tbody>
   </table>
+  <div class = "paginaItem">
+    <span id="atrasItem" (click) = "clickBackItem()">  &#60;&#60; </span>
+    <span id = "delanteItem" (click) = "clickNextItem()"> &#62;&#62; </span>
+  </div>
   <div class="d-flex flex-row-reverse bd-highlight">
     <button class="btn btn-primary" (click) = "salirDetalle()">Volver</button>
   </div>

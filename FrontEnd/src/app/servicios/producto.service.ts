@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Producto, Categoria } from '../Modelos/producto.model';
 import { Observable } from 'rxjs';
 
@@ -29,31 +29,102 @@ export class ProductoService {
 
   consultarProductos(page:number,size:number):Observable<any>
   {
-    let url = "http://localhost:8080/productos/getProductos/"+page+"/"+size
-    return this.http.get<any>(url);
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/getProductos/"+page+"/"+size
+    return this.http.get<any>(url,options);
+  }
+
+  consultarProductosTienda(page:number,size:number):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/getProductosU/"+page+"/"+size
+    return this.http.get<any>(url,options);
+  }
+
+  consultarProductosByCategoria(page:number, size: number, categoria:number):Observable<any>
+  {
+    var categoriaString:string
+    if(categoria === 0)
+    {
+      categoriaString = "bebidas"
+    }else if(categoria === 1)
+    {
+      categoriaString = "pasteleria"
+    }else{
+      categoriaString = "grano"
+    }
+    const headerDict = {
+      'Authorization': localStorage.getItem('user') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/getProductosCategoria/"+categoriaString + "/"+page+"/"+size
+    return this.http.get<any>(url,options);
   }
 
   actualizarProducto(producto:Producto):Observable<any>
   {
-    let url = "http://localhost:8080/productos/actualizar/"+producto.id
-    return this.http.put<any>(url,producto);
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/actualizar/"+producto.id
+    return this.http.put<any>(url,producto,options);
   }
 
   agregarProducto(producto:Producto):Observable<any>
   {
-    let url = "http://localhost:8080/productos"
-    return this.http.post<any>(url,producto)
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos"
+    return this.http.post<any>(url,producto,options)
   }
 
   eliminarProducto(producto:Producto):Observable<any>
   {
-    let url = "http://localhost:8080/productos/eliminar/" + producto.id
-    return this.http.delete<any>(url);
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/productos/eliminar/" + producto.id
+    return this.http.delete<any>(url,options);
   }
 
   consultarItemsProducto(producto:Producto):Observable<any>
   {
-    let url = "http://localhost:8080/items/getItemsProducto/"+producto.id
-    return this.http.get<any>(url);
+    const headerDict = {
+      'Authorization': localStorage.getItem('admin') as any
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/items/getItemsProducto/"+producto.id
+    return this.http.get<any>(url,options);
   }
 }

@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,15 +17,21 @@ import javax.persistence.Table;
 @Entity
 public class Usuario {
 	@Id
-	public String email;
-	public String nombre;
-	public String apellido;
-	public String contrasena;
-	public long celular;
-	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "usuario")
-	public List<Venta> compras;
-	public boolean admin;
+	private String email;
+	
+	private String nombre;
+	
+	private String apellido;
+	
+	private String contrasena;
+	
+	private long celular;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Venta> compras;
 
+	@ManyToOne( fetch = FetchType.LAZY)
+	private Rol rol;
 
 	public String getEmail() {
 		return email;
@@ -62,13 +69,13 @@ public class Usuario {
 	public void setCompras(List<Venta> compras) {
 		this.compras = compras;
 	}
-	public boolean getAdmin() {
-		return admin;
+	
+	public Rol getRol() {
+		return rol;
 	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
-
 	@Override
 	public String toString() {
 		return "Usuario [email=" + email + ", firstname=" + nombre + ", lastname=" + apellido + "]";

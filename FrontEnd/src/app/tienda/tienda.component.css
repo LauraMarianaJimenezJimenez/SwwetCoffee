@@ -135,3 +135,20 @@ img:hover
   width: 30px;
   height: 30px;
 }
+
+.paginas {
+  position: absolute;
+  float: right;
+  top:40%;
+  margin-left: 7%;
+}
+.paginacion {
+  color: honeydew;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #946447;
+  margin: 5px;
+}

@@ -1,12 +1,16 @@
 package com.example.springdata.springjpa.dtos;
 
 public class UsuarioDTO {
-	public String email;
-	public String nombre;
-	public String apellido;
-	public String contrasena;
-	public long celular;
-	public boolean admin;
+	
+	private String email;
+	
+	private String nombre;
+	
+	private String apellido;
+	
+	private String contrasena;
+	
+	private long celular;
 	
 	public String getEmail() {
 		return email;
@@ -37,12 +41,6 @@ public class UsuarioDTO {
 	}
 	public void setCelular(long celular) {
 		this.celular = celular;
-	}
-	public boolean isAdmin() {
-		return admin;
-	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
 	}
 
 	

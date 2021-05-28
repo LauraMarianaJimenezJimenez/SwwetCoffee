@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/Modelos/usuario.model';
 import { VentaService } from './venta.service';
 
@@ -13,7 +15,6 @@ export class UsuarioService {
     'chuchoperez@gmail.com',
     300,
     [],
-    false
   );
   public admin: Usuario = new Usuario(
     'Maria',
@@ -22,53 +23,48 @@ export class UsuarioService {
     'admin@gmail.com',
     301,
     [],
-    true
   );
 
 
   public usuarios: Usuario[] = [this.usuario1, this.admin];
 
   public usuarioActivo: Usuario = {} as Usuario
-  constructor() {}
+  constructor(private http:HttpClient) {}
 
-  buscarUsuario(email: string, contrasena: string) {
-    var usu =  this.usuarios.find(e=> e.email.toLowerCase()=== email.toLowerCase() && e.contrasena === contrasena)
-    if(usu !== undefined)
-    {
-      this.usuarioActivo = usu as Usuario;
+  buscarUsuario(email: string, token:string):Observable<any> {
+    const headerDict = {
+      'Authorization': token
     }
-    return usu;
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/usuarios/getUsuario/" + email
+    return this.http.get<any>(url,options)
   }
 
-  registrar(
-    email: string,
-    contrasena: string,
-    contrasena2: string,
-    nombre: string,
-    apellido: string,
-    celular: number
-  ): boolean {
-    let regexpEmail = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$');
-    if (!regexpEmail.test(email)) {
-      alert('El email no cumple con el formato');
-      return false;
-    } else {
-      for (let usu of this.usuarios) {
-        if (usu.email.toLowerCase() === email.toLowerCase()) {
-          alert('El usuario ya existe');
-          return false;
-        }
-      }
-      if (contrasena !== contrasena2) {
-        alert('Las contraseñas no coninciden');
-        return false;
-      }
-    }
-    var usuarioNuevo : Usuario = new Usuario(nombre,apellido,contrasena,email,celular,[],false);
-    this.usuarios.push(usuarioNuevo);
-    this.usuarioActivo = usuarioNuevo;
-    localStorage.setItem('user',usuarioNuevo.email);
-
-    return true;
+  login(usuario:Usuario):Observable<any>
+  {
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/login"
+    return this.http.post<any>(url,usuario,{observe: 'response'})
   }
+
+  getRol(usuario:Usuario, token:string):Observable<any>
+  {
+    const headerDict = {
+      'Authorization': token
+    }
+    let options = {
+      headers: new HttpHeaders(headerDict)
+    }
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/usuarios/getRol/" + usuario.email
+    return this.http.get<any>(url,options)
+  }
+
+  registrar(newUsuario:Usuario):Observable<any>
+  {
+    let url = "http://sweetcoffee-env.eba-wn3kmhgx.us-east-2.elasticbeanstalk.com/usuarios/registrar"
+    return this.http.post<any>(url, newUsuario)
+  }
+  
 }

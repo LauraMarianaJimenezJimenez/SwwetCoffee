@@ -10,8 +10,6 @@ export class Usuario
         public email: string,
         public celular: number,
         public compras: Venta[],
-        public admin: boolean
-
     )
     {
 

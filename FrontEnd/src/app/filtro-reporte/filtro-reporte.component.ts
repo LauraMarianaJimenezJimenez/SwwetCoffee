@@ -14,7 +14,7 @@ export class FiltroReporteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  mostrarVentas(mes:string)
+  mostrarVentas(mes:number)
   {
     this.reporteComponent.filtrarVentas(mes);
   }

@@ -1,7 +1,11 @@
 package com.example.springdata.springjpa.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.springdata.springjpa.model.Venta;
@@ -14,8 +18,9 @@ public class VentaServiceImpl implements VentaService{
 	VentaRepository ventaRepository;
 
 	@Override
-	public Iterable<Venta> getAllVentas() {
-		return ventaRepository.findAll();
+	public Page<Venta> getAllVentas(PageRequest pageRequest) {
+		ventaRepository.deleteVentasSinItems();
+		return ventaRepository.findAll(pageRequest);
 	}
 
 	@Override
@@ -25,13 +30,42 @@ public class VentaServiceImpl implements VentaService{
 	}
 
 	@Override
-	public Iterable<Venta> getVentasByUsuario(String email) {
-		return ventaRepository.findByUsuario(email);
+	public Page<Venta> getVentasByUsuario(String email, PageRequest pageRequest) {
+		ventaRepository.deleteVentasSinItems();
+		return ventaRepository.findByUsuario(email, pageRequest);
 	}
 
 	@Override
-	public Venta AddVenta(Venta newVenta) {
+	public Venta addVenta(Venta newVenta) {
 		return ventaRepository.save(newVenta);
+	}
+
+	@Override
+	public Page<Venta> getVentasByMes(int mes, PageRequest pageRequest) {
+		return ventaRepository.findByMes(mes, pageRequest);
+	}
+
+	@Override
+	public int getTotalVentas(int mes) {
+		if( mes == 0)
+		{
+			return ventaRepository.findNumeroTotal();
+		}else
+		{
+			return ventaRepository.findNumeroTotal(mes);
+		}
+	}
+
+	@Override
+	public int getValorTotalVentas(int mes) {
+		if(mes==0)
+		{
+			return ventaRepository.findValorTotal();
+		}else
+		{
+			return ventaRepository.findValorTotal(mes);
+		}
+		
 	}
 		
 }

@@ -1,17 +1,22 @@
 package com.example.springdata.springjpa.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.example.springdata.springjpa.model.Item;
 
 public interface ItemService {
 	
-	Iterable<Item> getAllItems();
+	Page<Item> getAllItems(PageRequest pageRequest);
 
 	void deleteAllItems();
 
-	Iterable<Item> getItemsByVenta(long id);
+	Page<Item> getItemsByVenta(long id, PageRequest pageRequest);
 
-	void AddItem(Item newItem);
+	Item addItem(Item newItem);
 
-	Iterable<Item> getItemsByProducto(long id);
+	List<Item> getItemsByProducto(long id);
 
 }

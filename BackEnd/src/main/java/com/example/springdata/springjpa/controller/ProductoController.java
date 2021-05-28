@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +31,28 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 	
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("getProductos/{page}/{size}")
 	Page<ProductoDTO> getAllProductos(@PathVariable int page, @PathVariable int size)
 	{
-		return transformarDTO(productoService.getAllProdcuts(PageRequest.of(page, size)));
+		return transformarDTO(productoService.getAllProdcuts(PageRequest.of(page, size)), PageRequest.of(page, size));
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@GetMapping("getProductosU/{page}/{size}")
+	Page<ProductoDTO> getAllProductosU(@PathVariable int page, @PathVariable int size)
+	{
+		return transformarDTO(productoService.getAllProdcutsU(PageRequest.of(page, size)), PageRequest.of(page, size));
+	}
+	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("getProductosCategoria/{categoria}/{page}/{size}")
 	Page<ProductoDTO> getProductosByCategoria(@PathVariable String categoria, @PathVariable int page, @PathVariable int size)
 	{
-		return transformarDTO(productoService.getByCategoria(categoria, PageRequest.of(page, size)));
+		return transformarDTO(productoService.getByCategoria(categoria, PageRequest.of(page, size)), PageRequest.of(page, size));
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@PutMapping("actualizar/{id}")
     public ProductoDTO actualizarProducto(@RequestBody Producto newProducto, @PathVariable Long id) {
 		ModelMapper modelMapper = new ModelMapper();
@@ -48,26 +60,29 @@ public class ProductoController {
 		return productoDTO;
     }
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping
     public ProductoDTO post(@RequestBody Producto newProducto) {
 		ModelMapper modelMapper = new ModelMapper();
-		ProductoDTO  productoDTO = modelMapper.map(productoService.AddProducto(newProducto), ProductoDTO.class);
+		ProductoDTO  productoDTO = modelMapper.map(productoService.addProducto(newProducto), ProductoDTO.class);
 		return productoDTO;
     }
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping
-    public String deleteALL() {
+    public boolean deleteALL() {
 		productoService.deleteAllProducts();
-        return "Respuesta desde el metodo DELETE";
+        return true;
     }
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/eliminar/{id}")
-    public String deleteProduct	(@PathVariable Long id) {
+    public boolean deleteProduct(@PathVariable Long id) {
 		productoService.deleteProduct(id);
-        return "Producto eliminado correctamente";
+        return true;
     }
 	
-	public Page<ProductoDTO> transformarDTO(Page<Producto> productos)
+	public Page<ProductoDTO> transformarDTO(Page<Producto> productos, Pageable pageable)
 	{
 		List<ProductoDTO> productosList = new ArrayList<>();
 		for (Producto p : productos)
@@ -83,7 +98,7 @@ public class ProductoController {
 			pDTO.setPrecio(p.getPrecio());
 			productosList.add(pDTO);
 		}
-		Page<ProductoDTO> productosDTO = new PageImpl<>(productosList);
+		Page<ProductoDTO> productosDTO = new PageImpl<>(productosList,pageable,productos.getTotalElements());
 		return productosDTO;
 	}
 

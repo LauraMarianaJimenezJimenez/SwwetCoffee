@@ -1,33 +1,62 @@
-<app-navebar></app-navebar> 
+<app-navebar></app-navebar>
 <app-filtro></app-filtro>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class = "filtro2">
-<div class="container bootstrap snippets bootdey">
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<div class="filtro2">
+  <div class="paginas pull-right">
+    <button id="btnAtras" class="paginacion" (click)="clickBack()">
+      &#60;
+    </button>
+    <button id="btnSiguiente" class="paginacion" (click)="clickNext()">
+      &#62;
+    </button>
+  </div>
+  <div class="container bootstrap snippets bootdey">
     <div class="row">
-       <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let prod of productos">
-            <div class="wp-block product">
-                <figure>
-                  <img alt="194x228" src="{{prod.imagen}}" class="img-responsive img-center">
-                </figure>                    
-                
-                <h2 class="product-title"><ins><a>{{prod.nombre}}</a></ins></h2>
-                <p>
-                {{prod.descripcion}}
-                </p>
-                <div class="wp-block-footer">
-                  <b>
-                    <span class="price pull-left">${{prod.precio}}</span></b>
-                    <a class="btn btn-sm btn-info btn-icon btn-cart pull-right" (click) = "agregarItem(prod,1)">
-                        <i class="fa fa-cart-plus"></i>
-                        <span>Añadir al carrito</span>
-                    </a>
-                </div>
-            </div>
+      <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let prod of productos">
+        <div class="wp-block product">
+          <figure>
+            <img
+              alt="194x228"
+              src="{{ prod.imagen }}"
+              class="img-responsive img-center"
+            />
+          </figure>
+
+          <h2 class="product-title">
+            <ins
+              ><a>{{ prod.nombre }}</a></ins
+            >
+          </h2>
+          <p>
+            {{ prod.descripcion }}
+          </p>
+          <div class="wp-block-footer">
+            <b>
+              <span class="price pull-left">${{ prod.precio }}</span></b
+            >
+            <a
+              class="btn btn-sm btn-info btn-icon btn-cart pull-right"
+              (click)="agregarItem(prod, 1)"
+            >
+              <i class="fa fa-cart-plus"></i>
+              <span>Añadir al carrito</span>
+            </a>
+          </div>
         </div>
-	</div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>   
 <div class="comprar">
-  <button id="btnComprar" (click)="realizarCompra()"><img id = "imgCarrito" src="http://www.clker.com/cliparts/U/D/n/G/6/h/white-shopping-cart-md.png" alt=""></button>
+  <button id="btnComprar" (click)="realizarCompra()">
+    <img
+      id="imgCarrito"
+      src="http://www.clker.com/cliparts/U/D/n/G/6/h/white-shopping-cart-md.png"
+      alt=""
+    />
+  </button>
 </div>
 <app-footer></app-footer>

@@ -13,12 +13,14 @@ public interface ProductoService {
 	
 	Page<Producto> getByCategoria(String categoria, PageRequest pageRequest);
 
-	Producto AddProducto(Producto newProducto);
+	Producto addProducto(Producto newProducto);
 
 	void deleteAllProducts();
 
 	void deleteProduct(Long id);
 
 	Producto actualizarProducto(Producto newProducto, Long id);
+
+	Page<Producto> getAllProdcutsU(PageRequest of);
 
 }

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,45 +31,70 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
-	@GetMapping("getItems")
-	List<ItemDTO> getAllItem()
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@GetMapping("getItems/{page}/{size}")
+	Page<ItemDTO> getAllItem(@PathVariable int page, @PathVariable int size)
 	{
-		return this.transformarDTO(itemService.getAllItems());
-	}
-	@GetMapping("getItemsVenta/{id}")
-	List<ItemDTO> getItemsByVenta(@PathVariable long id)
-	{
-		return this.transformarDTO(itemService.getItemsByVenta(id));
+		return this.transformarDTO(itemService.getAllItems(PageRequest.of(page, size)), PageRequest.of(page, size));
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@GetMapping("getItemsVenta/{id}/{page}/{size}")
+	Page<ItemDTO> getItemsByVenta(@PathVariable long id, @PathVariable int page, @PathVariable int size)
+	{
+		return this.transformarDTO(itemService.getItemsByVenta(id, PageRequest.of(page, size)), PageRequest.of(page, size));
+	}
+	
+	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("getItemsProducto/{id}")
 	boolean getItemProducto(@PathVariable long id)
 	{
-		if(this.transformarDTO(itemService.getItemsByProducto(id)).isEmpty())
+		if(itemService.getItemsByProducto(id).isEmpty())
 		{
 			return true;
 		}else
 			return false;
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@PutMapping
-    public String put() {
-        return "Respuesta desde el metodo PUT";
+    public boolean put() {
+        return true;
     }
 	
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@PostMapping
-    public String post(@RequestBody Item newItem) {
-		this.itemService.AddItem(newItem);
-        return "Respuesta desde el metodo POST";
+    public boolean post(@RequestBody Item newItem) {
+		if(this.itemService.addItem(newItem) != null)
+		{
+			return true;
+		}
+        return false;
     }
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@PostMapping("agregarItems")
+    public boolean agregarItems(@RequestBody List<Item> newItems) {
+		for (Item item : newItems) {
+			if(this.itemService.addItem(item) == null)
+			{
+				return false;
+			}
+		}
+        return true;
+    }
+	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping
-    public String delete() {
+    public boolean delete() {
 		itemService.deleteAllItems();
-        return "Respuesta desde el metodo DELETE";
+        return true;
     }
 	
 	
-	public List<ItemDTO> transformarDTO(Iterable<Item> items)
+	public Page<ItemDTO> transformarDTO(Page<Item> items, Pageable pageable)
 	{
 		List<ItemDTO> itemsDTO =  new ArrayList<ItemDTO>();
 
@@ -76,7 +106,8 @@ public class ItemController {
 			iDTO.setPrecioVenta(i.getPrecioVenta());
 			itemsDTO.add(iDTO);
 		}
-		return itemsDTO;
+		Page<ItemDTO> pageItemsDTO = new PageImpl<>(itemsDTO, pageable, items.getTotalElements());
+		return pageItemsDTO;
 	}
 
 

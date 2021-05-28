@@ -14,21 +14,21 @@ public class Producto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long id;
+	private long id;
 	
-	public String nombre;
+	private String nombre;
 
-	public int precio;
+	private int precio;
 
 	@Column(length=2083)
-	public String imagen;
+	private String imagen;
 
-	public String descripcion;
+	private String descripcion;
 
 	@Enumerated(EnumType.STRING)
-	public Categoria categoria;	
+	private Categoria categoria;	
 
-	public boolean activo;
+	private boolean activo;
 
 	@Transient
 	public boolean editar;

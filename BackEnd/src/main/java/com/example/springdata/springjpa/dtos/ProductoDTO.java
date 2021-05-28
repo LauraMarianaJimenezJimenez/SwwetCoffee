@@ -5,21 +5,21 @@ import com.example.springdata.springjpa.model.Categoria;
 
 public class ProductoDTO {
 
-	public long id;
+	private long id;
 
-	public String nombre;
+	private String nombre;
 
-	public int precio;
+	private int precio;
 
-	public String imagen;
+	private String imagen;
 
-	public String descripcion;
+	private String descripcion;
 
-	public Categoria categoria;	
+	private Categoria categoria;	
 
-	public boolean activo;
+	private boolean activo;
 
-	public boolean editar;
+	private boolean editar;
 
 	public long getId() {
 		return id;

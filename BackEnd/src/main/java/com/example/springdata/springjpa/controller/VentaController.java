@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springdata.springjpa.dtos.VentaDTO;
-import com.example.springdata.springjpa.model.Usuario;
+import com.example.springdata.springjpa.dtos.VentaTotalDTO;
+
 import com.example.springdata.springjpa.model.Venta;
 import com.example.springdata.springjpa.service.VentaService;
 
@@ -25,35 +32,64 @@ public class VentaController {
 	@Autowired
 	private VentaService ventaService;
 
-	@GetMapping("getVentas")
-	List<VentaDTO> getVentas()
+	@Secured("ROLE_ADMIN")
+	@GetMapping("getVentas/{page}/{size}")
+	Page<VentaDTO> getVentas(@PathVariable int page, @PathVariable int size)
 	{
-		return transformarDTO(ventaService.getAllVentas());
-	}
-
-	@GetMapping("getVentasUsuario/{email}")
-	List<VentaDTO> getVentasByUsuario(@PathVariable String email)
-	{
-		return transformarDTO(ventaService.getVentasByUsuario(email));
-	}
-
-	@PutMapping
-	public String put() {
-		return "Respuesta desde el metodo PUT";
-	}
-
-	@PostMapping
-	public Venta post(@RequestBody Venta newVenta) {
-		return ventaService.AddVenta(newVenta);
-	}
-
-	@DeleteMapping
-	public String delete() {
-		ventaService.deleteAllVentas();
-		return "Respuesta desde el metodo DELETE";
+		return transformarDTO(ventaService.getAllVentas(PageRequest.of(page, size)),PageRequest.of(page, size));
 	}
 	
-	public List<VentaDTO> transformarDTO(Iterable<Venta> ventas)
+	@Secured("ROLE_ADMIN")
+	@GetMapping("getVentasMes/{mes}/{page}/{size}")
+	Page<VentaDTO> getVentasByMes(@PathVariable int mes, @PathVariable int page, @PathVariable int size)
+	{
+		return transformarDTO(ventaService.getVentasByMes(mes, PageRequest.of(page, size)),PageRequest.of(page, size));
+	}
+
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@GetMapping("getVentasUsuario/{email}/{page}/{size}")
+	Page<VentaDTO> getVentasByUsuario(@PathVariable String email, @PathVariable int page, @PathVariable int size)
+	{
+		return transformarDTO(ventaService.getVentasByUsuario(email, PageRequest.of(page, size)), PageRequest.of(page, size));
+	}
+	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@GetMapping("getTotalVentas")
+	VentaTotalDTO getTotalVentas(@RequestParam(name = "mes", required = false, defaultValue = "0") int mes)
+	{
+		VentaTotalDTO ventaDTO = new VentaTotalDTO();
+		int totalVentas = ventaService.getTotalVentas(mes);
+		int valorTotalVentas = ventaService.getValorTotalVentas(mes);
+		ventaDTO.setNumeroTotalVentas(totalVentas);
+		ventaDTO.setValorTotalVentas(valorTotalVentas);
+		return ventaDTO;
+	}
+
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@PutMapping
+	public boolean put() {
+		return true;
+	}
+
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@PostMapping
+	public VentaDTO post(@RequestBody Venta newVenta) {
+		VentaDTO vDTO =  new VentaDTO();
+		Venta v= ventaService.addVenta(newVenta);
+		vDTO.setFecha(v.getFecha());
+		vDTO.setId(v.getId());
+		vDTO.setValor(v.getValor());
+		return vDTO;
+	}
+
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping
+	public boolean delete() {
+		ventaService.deleteAllVentas();
+		return true;
+	}
+	
+	public Page<VentaDTO> transformarDTO(Page<Venta> ventas, Pageable pageable)
 	{
 		List<VentaDTO> ventasDTO =  new ArrayList<VentaDTO>();
 
@@ -66,6 +102,7 @@ public class VentaController {
 			vDTO.setValor(v.getValor());
 			ventasDTO.add(vDTO);
 		}
-		return ventasDTO;
+		Page<VentaDTO> pageVentasDTO = new PageImpl<>(ventasDTO, pageable, ventas.getTotalElements());
+		return pageVentasDTO;
 	}
 }

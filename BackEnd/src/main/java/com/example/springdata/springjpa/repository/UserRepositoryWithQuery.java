@@ -11,6 +11,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.springdata.springjpa.model.Rol;
 import com.example.springdata.springjpa.model.Usuario;
 
 /**
@@ -23,5 +24,8 @@ import com.example.springdata.springjpa.model.Usuario;
 public interface UserRepositoryWithQuery extends PagingAndSortingRepository<Usuario, String> {
 	
 	Usuario findByEmail(String email);
+	
+	@Query("SELECT u.rol FROM Usuario u WHERE u.email = :email")
+	Rol findRolByUsuario(String email);
 
 }

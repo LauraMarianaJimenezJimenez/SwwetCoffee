@@ -19,6 +19,10 @@
       </tr>
     </tbody>
   </table>
+  <div class=" paginas pull-right">
+    <button id="btnAtras" class ="paginacion" (click) = "clickBack()">&#60;</button>
+    <button id="btnSiguiente" class ="paginacion" (click) = "clickNext()">&#62;</button>
+  </div>
 </div>
 
 <div class="tablaDetail" *ngIf="detalle">
@@ -44,13 +48,17 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of compraDetalle.items">
-        <td>{{item.producto.nombre}}</td>
+        <td>{{item.nombreProducto}}</td>
         <td>{{item.cantidad}}</td>
         <td>{{item.precioVenta}}</td>
         <td>{{item.precioVenta * item.cantidad}}</td>
       </tr>
     </tbody>
   </table>
+  <div class = "paginaItem">
+    <span id="atrasItem" (click) = "clickBackItem()">  &#60;&#60; </span>
+    <span id = "delanteItem" (click) = "clickNextItem()"> &#62;&#62; </span>
+  </div>
   <div class="d-flex flex-row-reverse bd-highlight">
     <button class="btn btn-primary" (click) = "salirDetalle()">Volver</button>
   </div>
